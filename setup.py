@@ -23,7 +23,7 @@ VERSION = 0.1
 # What packages are required for this module to be executed?
 REQUIRED = [
     # 'requests', 'maya', 'records',
-    mpu6050-raspberrypi
+    'mpu6050-raspberrypi', 'argparse', 'python3-smbus'
 ]
 
 # What packages are optional?

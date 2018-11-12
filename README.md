@@ -2,6 +2,8 @@
 
 ## About
 
+This project will be interfacing an MPU6050 accelerometer/gyroscope/temperature gauge, a 40x4 character LCD ouput screen, and a Raspberry Pi 3.  
+
 ## Workflow
 ### [X] Define General Python project structure
 
@@ -20,9 +22,13 @@
 >> 1. User selects amount of time to record 
 >> 2. User confirms amount of time to begin recording
 >> 3. Data is logged for the selected duration
+>> 4. Oldest data is deleted if space runs out while new data is being recorded. 
 
 >Entry condition:		
-> System has free storage space to write data to. 
+>> Sensor is attached to module
+
+>Exit condition:
+>> 
 
 
 >#### Use Case #2:
@@ -38,22 +44,20 @@
 >> 2. User selects Tranfer Data option 
 >> 3. User selects which RecordData to transfer
 >> 4. System verifies USB is plugged in and has enough space to write RecordData selection
->> 5. 
+>> 5. System disables all other operations while writing to USB
+>> 6. System displays status of write to USB
+>> 7. USB is set to removable state
 
 >Entry Condition:
+>> USB with enough free space is plugged in
 
 >Exit Condition:
+>> Write operation buffer is flushed and status is displayed to User 
 
 >Quality Requirements:
+>> User should revieve real time and end time status (succes or failure) of write to USB
 
-
->#### Use Case #3:
->Use case name:
->Participating Actor:
->Flow of Events:
->Entry Condition:
->Exit Condition:
->Quality Requirements:
 
 
 ### [ ] Define necessary apis  
+
