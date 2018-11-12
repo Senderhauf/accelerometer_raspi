@@ -3,9 +3,9 @@
 ## About
 
 ## Workflow
-- [X] Define General Python project structure
+### - [X] Define General Python project structure
 
-- [ ] Define Use cases 
+### - [ ] Define Use cases 
 
 
 > #### Use Case #1:
@@ -56,4 +56,4 @@
 >Quality Requirements:
 
 
-- [ ] Define necessary apis  
+### - [ ] Define necessary apis  
