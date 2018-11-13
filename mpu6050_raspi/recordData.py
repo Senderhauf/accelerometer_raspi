@@ -1,27 +1,36 @@
 
 from mpu6050 import mpu6050
 from time import time
-
+from datetime import datetime
+import csv
 
 sensor = mpu6050(0x68)
 
 duration = ''
 
-while('min' not in duration or 'hrs' not in duration):
-    duration = raw_input('Enter duration (append min or hrs): ')
-    if('min' not in duration or 'hrs' not in duration):
+while('min' not in duration and 'hrs' not in duration):
+    duration = input('Enter duration (append min or hrs): ')
+    if('min' not in duration and 'hrs' not in duration):
         print('Duration must be of type min or hrs')
 
-endtime = None 
+endtime = None
 
 if 'min' in duration:
-    endtime = time() + (60 * int(duration.split(" ")[0]))
+    endtime = time() + (60 * float(duration.split(" ")[0]))
 else:
-    endtime = time() + (360 * int(duration.split(" ")[0]))
+    endtime = time() + (360 * float(duration.split(" ")[0]))
 
-raw_input('Press Enter to Start')
+input('Press Enter to Start')
 
-while(endtime > time()):
-    accelerometer_data = sensor.get_accel_data()
+curTime = time();
 
-print(accelerometer_data)
+with open('{}.csv'.format(datetime.now()), 'w') as file:
+    fieldnames = ['time', 'x', 'y', 'z']
+    writer = csv.DictWriter(file, fieldnames)
+    writer.writeheader()
+    while(endtime > curTime):
+        accelerometer_data = sensor.get_accel_data()
+        accelerometer_data['time'] = curTime
+        writer.writerow(accelerometer_data)
+        curTime = time()
+
