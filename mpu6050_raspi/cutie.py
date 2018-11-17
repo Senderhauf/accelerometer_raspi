@@ -418,3 +418,41 @@ def prompt_min_or_hour(
     if abort:
         return abort_value
     return is_selected and is_min
+
+
+def get_number_arrows(
+    prompt: str,
+    increment: int,
+    max_value: int,
+    min_value: int = 0) -> int:
+
+    """Get a number from user using arrow keys to increment or decrement. 
+    If the starting value 0 is entered prompt user until valid value is entered. 
+
+    Args:
+        min_value (int): minimum value 
+        max_value (int): maximum value
+
+    Returns:
+        int: number entered by user
+    """
+
+    return_value: Optional[int] = min_value
+    current_value = return_value
+    max_min_prompt = f' ({str(min_value)},{str(max_value)}): '
+
+    while return_value is 0:
+        print('\033[3A\r\033[K'
+            f'{prompt}{max_min_prompt}{current_value}', end='', flush=True)
+        keypress = readchar.readkey()
+        if keypress in [readchar.key.DOWN]:
+            if (current_value - increment) > min_value:
+                current_value -= increment
+        elif keypress in [readchar.key.UP]:
+            if (current_value + increment) < max_value:
+                current_value += increment
+        elif keypress in [readchar.key.ENTER]:
+            if current_value < max_value and current_value > min_value:
+                return_value = current_value
+
+    return return_value

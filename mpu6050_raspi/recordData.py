@@ -7,25 +7,20 @@ import cutie
 
 
 def record_data():
-    
 
-    if cutie.prompt_min_or_hour('Enter duration type:'):
+    if cutie.prompt_min_or_hour('Enter duration type: ') == 'min':
+        duration = cutie.get_number_arrows('Enter duration ', 5, 60, 0)
 
+        # endtime = time() + (60 * float(duration))
+        endtime = time() + (float(duration))
 
-
-    duration = ''
-
-    while('min' not in duration and 'hrs' not in duration):
-        duration = input('Enter duration (append min or hrs): ')
-        if('min' not in duration and 'hrs' not in duration):
-            print('Duration must be of type min or hrs')
-
-    endtime = None
-
-    if 'min' in duration:
-        endtime = time() + (60 * float(duration.split(" ")[0]))
     else:
-        endtime = time() + (360 * float(duration.split(" ")[0]))
+        duration = cutie.get_number_arrows('Enter duration ', 5, 60, 0)
+
+        endtime = time() + (360 * float(duration))       
+
+
+    duration = curtie
 
     input('Press Enter to Start')
 
@@ -40,6 +35,7 @@ def record_data():
             accelerometer_data['time'] = curTime
             writer.writerow(accelerometer_data)
             curTime = time()
+
 
 def transfer_data_usb():
 
