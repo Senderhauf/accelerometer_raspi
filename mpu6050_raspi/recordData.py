@@ -2,6 +2,7 @@
 from mpu6050 import mpu6050
 from time import time
 from datetime import datetime
+from datetime import timedelta
 from Adafruit_CharLCD import Adafruit_CharLCD
 import csv
 import cutie
@@ -9,26 +10,34 @@ import cutie
 
 def record_data():
 
-    is_min_type = cutie.prompt_min_or_hour('Enter duration type: ') == 'min'
+    is_min_type = cutie.prompt_min_or_hour('CHOOSE ') == 'min'
 
     duration = 0
 
     if is_min_type:
-        duration = cutie.get_number_arrows('Enter duration ', 5, 60, 0)
+        duration = cutie.get_number_arrows('DURATION ', 5, 60, 0)
 
         # endtime = time() + (60 * float(duration))
         endtime = time() + (60 * float(duration))
 
     else:
-        duration = cutie.get_number_arrows('Enter duration ', 5, 60, 0)
+        duration = cutie.get_number_arrows('DURATION ', 5, 60, 0)
 
         endtime = time() + (360 * float(duration))
 
-    raw_input('Press Enter to Start')
+    raw_input('ENTER TO START')
 
     curTime = time()
     sensor = mpu6050(0x68)
     lcd = Adafruit_CharLCD()
+    lcd.clear()
+
+    if is_min_type:
+        finish = datetime.now() + timedelta(minutes = duration)
+        lcd.message('FINISH: {:02d}:{:02d}'.format(finish.hour, finish.minute))
+    else:
+        finish = datetime.now() + timedelta(hours = duration)
+        lcd.message('FINISH: {:02d}:{:02d}'.format(finish.hour, finish.minute))
 
     with open('{}.csv'.format(datetime.now()), 'w') as file:
         fieldnames = ['time', 'x', 'y', 'z']
@@ -37,8 +46,6 @@ def record_data():
         while(endtime > curTime):
             accelerometer_data = sensor.get_accel_data()
             accelerometer_data['time'] = curTime
-            lcd.clear()
-            lcd.message('time: {:8.2f}'.format(curTime))
             writer.writerow(accelerometer_data)
             curTime = time()
 

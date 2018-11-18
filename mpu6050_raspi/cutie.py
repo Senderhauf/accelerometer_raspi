@@ -378,7 +378,7 @@ def prompt_min_or_hour(
     is_min = default_is_min
     is_selected = enter_empty_confirms
     current_message = ''
-    yn_prompt = ' ({}/{}) '.format(min_text[0], hour_text[0]) if char_prompt else ': '
+    yn_prompt = ' ({}/{}): '.format(min_text[0], hour_text[0]) if char_prompt else ': '
     abort = False
     lcd = Adafruit_CharLCD()
 
