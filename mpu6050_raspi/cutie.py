@@ -8,6 +8,8 @@ from typing import List, Optional
 from colorama import init
 import readchar
 
+from Adafruit_CharLCD import Adafruit_CharLCD
+
 
 init()
 
@@ -378,16 +380,23 @@ def prompt_min_or_hour(
     current_message = ''
     yn_prompt = ' ({}/{}) '.format(min_text[0], hour_text[0]) if char_prompt else ': '
     abort = False
+    lcd = Adafruit_CharLCD()
+
     print()
+
     while True:
+    	lcd.clear()
         minute = is_min and is_selected
         hour = not is_min and is_selected
         print('\033[K'
               '{}{}'.format(selected_prefix if minute else deselected_prefix, min_text))
+        lcd.message('{}{}'.format(selected_prefix if minute else deselected_prefix, min_text))
         print('\033[K'
               '{}{}'.format(selected_prefix if hour else deselected_prefix, hour_text))
+        lcd.message('{}{}'.format(selected_prefix if hour else deselected_prefix, hour_text))
         print('\033[3A\r\033[K'
               '{}{}{}'.format(question, yn_prompt, current_message), end='')
+        lcd.message('{}{}{}'.format(question, yn_prompt, current_message))
         sys.stdout.flush()
         keypress = readchar.readkey()
         if keypress in [readchar.key.DOWN, readchar.key.UP]:
@@ -446,15 +455,17 @@ def get_number_arrows(
     Returns:
         int: number entered by user
     """
-
+    lcd = Adafruit_CharLCD()
     return_value = min_value
     current_value = return_value
     max_min_prompt = ' ({},{}): '.format(str(min_value), str(max_value))
 
     while return_value is 0:
         print('\n')
+        lcd.clear()
         print('\033[3A\r\033[K'
             '{}{}{}'.format(prompt, max_min_prompt, current_value), end='')
+        lcd.message('{}{}{}'.format(prompt, max_min_prompt, current_value))
         sys.stdout.flush()
         
         keypress = readchar.readkey()
