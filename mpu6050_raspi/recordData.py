@@ -8,7 +8,11 @@ import cutie
 
 def record_data():
 
-    if cutie.prompt_min_or_hour('Enter duration type: ') == 'min':
+    is_min_type = cutie.prompt_min_or_hour('Enter duration type: ') == 'min'
+
+    duration = 0
+
+    if is_min_type:
         duration = cutie.get_number_arrows('Enter duration ', 5, 60, 0)
 
         # endtime = time() + (60 * float(duration))
@@ -17,10 +21,7 @@ def record_data():
     else:
         duration = cutie.get_number_arrows('Enter duration ', 5, 60, 0)
 
-        endtime = time() + (360 * float(duration))       
-
-
-    duration = curtie
+        endtime = time() + (360 * float(duration))
 
     input('Press Enter to Start')
 
