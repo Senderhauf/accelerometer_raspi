@@ -16,7 +16,8 @@ def get_number(
         prompt,                        # type: str
         min_value = None,  # type: Optional[float]
         max_value = None,  # type: Optional[float]
-        allow_float = True) -> float: # type: bool
+        allow_float = True): # type: bool
+    #type: (...) -> float
     """Get a number from user input.
     If an invalid number is entered the user will be prompted again.
 
@@ -75,7 +76,8 @@ def select(
         deselected_prefix = '\033[1m[ ]\033[0m ',  # type: str
         selected_prefix = '\033[1m[\033[32;1mx\033[0;1m]\033[0m ', # type: str
         caption_prefix = '',   # type: str
-        selected_index = 0) -> int:    # type: int 
+        selected_index = 0):    # type: int 
+    #type: (...) -> int
     """Select an option from a list.
 
     Args:
@@ -136,7 +138,8 @@ def select_multiple(
         hide_confirm = False, # type: bool
         deselected_confirm_label = '\033[1m(( confirm ))\033[0m',  # type: str
         selected_confirm_label = '\033[1;32m{{ confirm }}\033[0m', # type: str
-    ) -> List[int]:
+    ):
+    #type: (...) -> List[int] 
     """Select multiple options from a list.
 
     Args:
@@ -261,7 +264,8 @@ def prompt_yes_or_no(
         deselected_prefix = '  ',  # type: str
         selected_prefix = '\033[31m>\033[0m ', # type: str 
         abort_value = None, # type: Optional[bool]
-        char_prompt = True) -> Optional[bool]:    # type: bool
+        char_prompt = True):    # type: bool
+    #type: (...) ->  Optional[bool]
     """Prompt the user to input yes or no.
 
     Args:
@@ -346,7 +350,8 @@ def prompt_min_or_hour(
         deselected_prefix = '  ',  # type: str
         selected_prefix = '\033[31m>\033[0m ', # type: str 
         abort_value = None,     # type: Optional[bool]
-        char_prompt = True) -> Optional[bool]:    # type: bool
+        char_prompt = True):    # type: bool
+    #type: (...) -> Optional[bool]
     """Prompt the user to input min or hour.
 
     Args:
@@ -421,11 +426,11 @@ def prompt_min_or_hour(
 
 
 def get_number_arrows(
-    prompt,        # type: str
-    increment,     # type: int
-    max_value,     # type: int
-    min_value = 0) -> int:     # type: int 
-
+        prompt,        # type: str
+        increment,     # type: int
+        max_value,     # type: int
+        min_value = 0):     # type: int 
+    #type: (...) -> int
     """Get a number from user using arrow keys to increment or decrement. 
     If the starting value 0 is entered prompt user until valid value is entered. 
 
