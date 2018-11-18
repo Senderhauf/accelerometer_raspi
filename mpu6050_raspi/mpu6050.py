@@ -5,7 +5,7 @@ Released under the MIT License
 Copyright (c) 2015, 2016, 2017 MrTijn/Tijndagamer
 """
 
-import smbus
+from smbus2 import SMBus
 
 class mpu6050:
 
@@ -55,7 +55,7 @@ class mpu6050:
 
     def __init__(self, address, bus=1):
         self.address = address
-        self.bus = smbus.SMBus(bus)
+        self.bus = SMBus(bus)
         # Wake up the MPU-6050 since it starts in sleep mode
         self.bus.write_byte_data(self.address, self.PWR_MGMT_1, 0x00)
 
