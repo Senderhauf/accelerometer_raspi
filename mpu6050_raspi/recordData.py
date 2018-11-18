@@ -38,10 +38,10 @@ def record_data():
 
 
 def transfer_data_usb():
-
+    return
 
 def interface_pc():
-
+    return
 
 def main():
     """Main
