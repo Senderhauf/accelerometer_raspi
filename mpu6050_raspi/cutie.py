@@ -379,7 +379,7 @@ def prompt_min_or_hour(
     print()
     while True:
         minute = is_min and is_selected
-        hour = not is_yes and is_selected
+        hour = not is_min and is_selected
         print('\033[K'
               '{}{}'.format(selected_prefix if minute else deselected_prefix, min_text))
         print('\033[K'
