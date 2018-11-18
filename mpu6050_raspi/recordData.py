@@ -23,9 +23,11 @@ def record_data():
 
         endtime = time() + (360 * float(duration))
 
-    input('Press Enter to Start')
+    raw_input('Press Enter to Start')
 
     curTime = time()
+    sensor = mpu6050(0x68)
+
 
     with open('{}.csv'.format(datetime.now()), 'w') as file:
         fieldnames = ['time', 'x', 'y', 'z']
