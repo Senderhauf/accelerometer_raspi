@@ -468,5 +468,6 @@ def get_number_arrows(
         elif keypress in [readchar.key.ENTER]:
             if current_value < max_value and current_value > min_value:
                 return_value = current_value
-
+        print()
+    print('\033[K\n\033[K\n\033[K\n\033[3A')
     return return_value
