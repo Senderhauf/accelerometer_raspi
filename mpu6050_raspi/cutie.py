@@ -1,6 +1,4 @@
-#! /usr/bin/env python3
-"""cutie: Commandline User Tools for Input Easification
-"""
+
 from __future__ import print_function
 import sys
 
@@ -454,6 +452,7 @@ def get_number_arrows(
     max_min_prompt = ' ({},{}): '.format(str(min_value), str(max_value))
 
     while return_value is 0:
+        print('\n')
         print('\033[3A\r\033[K'
             '{}{}{}'.format(prompt, max_min_prompt, current_value), end='')
         sys.stdout.flush()
