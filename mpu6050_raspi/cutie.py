@@ -13,10 +13,10 @@ init()
 
 
 def get_number(
-        prompt: str,
-        min_value: Optional[float] = None,
-        max_value: Optional[float] = None,
-        allow_float: bool = True) -> float:
+        prompt,                        # type: str
+        min_value = None,  # type: Optional[float]
+        max_value = None,  # type: Optional[float]
+        allow_float = True) -> float: # type: bool
     """Get a number from user input.
     If an invalid number is entered the user will be prompted again.
 
@@ -70,12 +70,12 @@ def secure_input(prompt: str) -> str:
 
 
 def select(
-        options: List[str],
-        caption_indices: Optional[List[int]] = None,
-        deselected_prefix: str = '\033[1m[ ]\033[0m ',
-        selected_prefix: str = '\033[1m[\033[32;1mx\033[0;1m]\033[0m ',
-        caption_prefix: str = '',
-        selected_index: int = 0) -> int:
+        options ,             # type: List[str]
+        caption_indices = None,    # type: Optional[List[int]]
+        deselected_prefix = '\033[1m[ ]\033[0m ',  # type: str
+        selected_prefix = '\033[1m[\033[32;1mx\033[0;1m]\033[0m ', # type: str
+        caption_prefix = '',   # type: str
+        selected_index = 0) -> int:    # type: int 
     """Select an option from a list.
 
     Args:
@@ -122,21 +122,21 @@ def select(
 
 
 def select_multiple(
-        options: List[str],
-        caption_indices: Optional[List[int]] = None,
-        deselected_unticked_prefix: str = '\033[1m( )\033[0m ',
-        deselected_ticked_prefix: str = '\033[1m(\033[32mx\033[0;1m)\033[0m ',
-        selected_unticked_prefix: str = '\033[32;1m{ }\033[0m ',
-        selected_ticked_prefix: str = '\033[32;1m{x}\033[0m ',
-        caption_prefix: str = '',
-        ticked_indices: Optional[List[int]] = None,
-        cursor_index: int = 0,
-        minimal_count: int = 0,
-        maximal_count: Optional[int] = None,
-        hide_confirm: bool = False,
-        deselected_confirm_label: str = '\033[1m(( confirm ))\033[0m',
-        selected_confirm_label: str = '\033[1;32m{{ confirm }}\033[0m',
-) -> List[int]:
+        options,     # type: List[str]
+        caption_indices = None,    # type: Optional[List[int]]
+        deselected_unticked_prefix = '\033[1m( )\033[0m ', # type: str
+        deselected_ticked_prefix = '\033[1m(\033[32mx\033[0;1m)\033[0m ',  # type: str 
+        selected_unticked_prefix = '\033[32;1m{ }\033[0m ',    # type: str
+        selected_ticked_prefix = '\033[32;1m{x}\033[0m ',  # type: str 
+        caption_prefix = '',   # type: str
+        ticked_indices = None, # type: Optional[List[int]]
+        cursor_index = 0,  # type: int
+        minimal_count = 0, # type: int
+        maximal_count = None,    # type: Optional[int] 
+        hide_confirm = False, # type: bool
+        deselected_confirm_label = '\033[1m(( confirm ))\033[0m',  # type: str
+        selected_confirm_label = '\033[1;32m{{ confirm }}\033[0m', # type: str
+    ) -> List[int]:
     """Select multiple options from a list.
 
     Args:
@@ -252,16 +252,16 @@ def select_multiple(
 
 
 def prompt_yes_or_no(
-        question: str,
-        yes_text: str = 'Yes',
-        no_text: str = 'No',
-        has_to_match_case: bool = False,
-        enter_empty_confirms: bool = True,
-        default_is_yes: bool = False,
-        deselected_prefix: str = '  ',
-        selected_prefix: str = '\033[31m>\033[0m ',
-        abort_value: Optional[bool] = None,
-        char_prompt: bool = True) -> Optional[bool]:
+        question,  # type: str
+        yes_text = 'Yes',  # type: str 
+        no_text = 'No',    # type: str
+        has_to_match_case = False,    # type: bool 
+        enter_empty_confirms = True,  # type: bool
+        default_is_yes = False,   # type: bool
+        deselected_prefix = '  ',  # type: str
+        selected_prefix = '\033[31m>\033[0m ', # type: str 
+        abort_value = None, # type: Optional[bool]
+        char_prompt = True) -> Optional[bool]:    # type: bool
     """Prompt the user to input yes or no.
 
     Args:
@@ -337,16 +337,16 @@ def prompt_yes_or_no(
 
 
 def prompt_min_or_hour(
-        question: str,
-        min_text: str = 'Minute',
-        hour_text: str = 'Hour',
-        has_to_match_case: bool = False,
-        enter_empty_confirms: bool = True,
-        default_is_min: bool = True,
-        deselected_prefix: str = '  ',
-        selected_prefix: str = '\033[31m>\033[0m ',
-        abort_value: Optional[bool] = None,
-        char_prompt: bool = True) -> Optional[bool]:
+        question,      # type: str
+        min_text = 'Minute',   # type: str
+        hour_text = 'Hour',    # type: str
+        has_to_match_case = False,    # type: bool  
+        enter_empty_confirms = True,  # type: bool
+        default_is_min = True,    # type: bool
+        deselected_prefix = '  ',  # type: str
+        selected_prefix = '\033[31m>\033[0m ', # type: str 
+        abort_value = None,     # type: Optional[bool]
+        char_prompt = True) -> Optional[bool]:    # type: bool
     """Prompt the user to input min or hour.
 
     Args:
@@ -421,10 +421,10 @@ def prompt_min_or_hour(
 
 
 def get_number_arrows(
-    prompt: str,
-    increment: int,
-    max_value: int,
-    min_value: int = 0) -> int:
+    prompt,        # type: str
+    increment,     # type: int
+    max_value,     # type: int
+    min_value = 0) -> int:     # type: int 
 
     """Get a number from user using arrow keys to increment or decrement. 
     If the starting value 0 is entered prompt user until valid value is entered. 
