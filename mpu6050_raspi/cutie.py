@@ -1,7 +1,7 @@
 #! /usr/bin/env python3
 """cutie: Commandline User Tools for Input Easification
 """
-
+import sys
 import getpass
 from typing import List, Optional
 from __future__ import print_function
@@ -252,7 +252,8 @@ def select_multiple(
             else:
                 break
     if not hide_confirm:
-        print('\033[1A\033[K', end='', flush=True)
+        print('\033[1A\033[K', end='')
+        sys.stdout.flush()
     return ticked_indices
 
 
@@ -299,7 +300,9 @@ def prompt_yes_or_no(
         print('\033[K'
               '{}{}'.format(selected_prefix if no else deselected_prefix, no_text))
         print('\033[3A\r\033[K'
-              '{}{}{}'.format(question, yn_prompt, current_message), end='', flush=True)
+              '{}{}{}'.format(question, yn_prompt, current_message), end='')
+        sys.stdout.flush()
+
         keypress = readchar.readkey()
         if keypress in [readchar.key.DOWN, readchar.key.UP]:
             is_yes = not is_yes
@@ -385,7 +388,8 @@ def prompt_min_or_hour(
         print('\033[K'
               '{}{}'.format(selected_prefix if hour else deselected_prefix, hour_text))
         print('\033[3A\r\033[K'
-              '{}{}{}'.format(question, yn_prompt, current_message), end='', flush=True)
+              '{}{}{}'.format(question, yn_prompt, current_message), end='')
+        sys.stdout.flush()
         keypress = readchar.readkey()
         if keypress in [readchar.key.DOWN, readchar.key.UP]:
             is_min = not is_min
@@ -450,7 +454,9 @@ def get_number_arrows(
 
     while return_value is 0:
         print('\033[3A\r\033[K'
-            '{}{}{}'.format(prompt, max_min_prompt, current_value), end='', flush=True)
+            '{}{}{}'.format(prompt, max_min_prompt, current_value), end='')
+        sys.stdout.flush()
+        
         keypress = readchar.readkey()
         if keypress in [readchar.key.DOWN]:
             if (current_value - increment) > min_value:
