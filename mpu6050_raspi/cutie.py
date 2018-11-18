@@ -59,7 +59,8 @@ def get_number(
     return int(return_value)
 
 
-def secure_input(prompt: str) -> str:
+def secure_input(prompt):   #type: str
+    #type: (...) -> str
     """Get secure input without showing it in the command line.
 
     Args:
