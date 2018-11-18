@@ -4,6 +4,7 @@
 
 import getpass
 from typing import List, Optional
+from __future__ import print_function
 
 from colorama import init
 import readchar
