@@ -1,10 +1,11 @@
 #! /usr/bin/env python3
 """cutie: Commandline User Tools for Input Easification
 """
+from __future__ import print_function
 import sys
+
 import getpass
 from typing import List, Optional
-from __future__ import print_function
 
 from colorama import init
 import readchar
