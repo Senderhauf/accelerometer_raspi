@@ -42,12 +42,12 @@ def get_number(
                 return_value = None
         if min_value is not None and return_value is not None:
             if return_value < min_value:
-                print(f'Has to be at least {min_value}.\033[K\033[1A\r\033[K',
+                print('Has to be at least {}.\033[K\033[1A\r\033[K'.format(min_value),
                       end='')
                 return_value = None
         if max_value is not None and return_value is not None:
             if return_value > max_value:
-                print(f'Has to be at most {max_value}.\033[1A\r\033[K', end='')
+                print('Has to be at most {}.\033[1A\r\033[K'.format(max_value), end='')
                 return_value = None
         if return_value is not None:
             break
@@ -93,7 +93,7 @@ def select(
     if caption_indices is None:
         caption_indices = []
     while True:
-        print(f'\033[{len(options) + 1}A')
+        print('\033[{}A'.format(len(options) + 1))
         for i, option in enumerate(options):
             if i not in caption_indices:
                 print('\033[K{}{}'.format(
@@ -180,7 +180,7 @@ def select_multiple(
         tick_keys.append(readchar.key.ENTER)
     error_message = ''
     while True:
-        print(f'\033[{max_index + 2}A')
+        print('\033[{}A'.format(max_index + 2))
         for i, option in enumerate(options):
             prefix = ''
             if i in caption_indices:
@@ -198,9 +198,9 @@ def select_multiple(
             print('\033[K{}{}'.format(prefix, option))
         if not hide_confirm:
             if cursor_index == max_index:
-                print(f'{selected_confirm_label} {error_message}\033[K')
+                print('{} {}\033[K'.format(selected_confirm_label, error_message))
             else:
-                print(f'{deselected_confirm_label} {error_message}\033[K')
+                print('{} {}\033[K'.format(deselected_confirm_label, error_message))
         error_message = ''
         keypress = readchar.readkey()
         if keypress == readchar.key.UP:
@@ -221,11 +221,11 @@ def select_multiple(
             if cursor_index == max_index and not hide_confirm:
                 if minimal_count > len(ticked_indices):
                     error_message = \
-                        f'Must select at least {minimal_count} options'
+                        'Must select at least {} options'.format(minimal_count)
                 elif maximal_count is not None and\
                         maximal_count < len(ticked_indices):
                     error_message = \
-                        f'Must select at most {maximal_count} options'
+                        'Must select at most {} options'.format(maximal_count)
                 else:
                     break
             elif cursor_index in ticked_indices:
@@ -239,11 +239,11 @@ def select_multiple(
         else:
             if minimal_count > len(ticked_indices):
                 error_message = \
-                    f'Must select at least {minimal_count} options'
+                    'Must select at least {} options'.format(minimal_count)
             elif maximal_count is not None and\
                     maximal_count < len(ticked_indices):
                 error_message = \
-                    f'Must select at most {maximal_count} options'
+                    'Must select at most {} options'.format(maximal_count)
             else:
                 break
     if not hide_confirm:
@@ -282,18 +282,18 @@ def prompt_yes_or_no(
     is_yes = default_is_yes
     is_selected = enter_empty_confirms
     current_message = ''
-    yn_prompt = f' ({yes_text[0]}/{no_text[0]}) ' if char_prompt else ': '
+    yn_prompt = ' ({}/{}) '.format(yes_text[0], no_text[0]) if char_prompt else ': '
     abort = False
     print()
     while True:
         yes = is_yes and is_selected
         no = not is_yes and is_selected
         print('\033[K'
-              f'{selected_prefix if yes else deselected_prefix}{yes_text}')
+              '{}{}'.format(selected_prefix if yes else deselected_prefix, yes_text))
         print('\033[K'
-              f'{selected_prefix if no else deselected_prefix}{no_text}')
+              '{}{}'.format(selected_prefix if no else deselected_prefix, no_text))
         print('\033[3A\r\033[K'
-              f'{question}{yn_prompt}{current_message}', end='', flush=True)
+              '{}{}{}'.format(question, yn_prompt, current_message), end='', flush=True)
         keypress = readchar.readkey()
         if keypress in [readchar.key.DOWN, readchar.key.UP]:
             is_yes = not is_yes
@@ -367,18 +367,18 @@ def prompt_min_or_hour(
     is_min = default_is_min
     is_selected = enter_empty_confirms
     current_message = ''
-    yn_prompt = f' ({min_text[0]}/{hour_text[0]}) ' if char_prompt else ': '
+    yn_prompt = ' ({}/{}) '.format(min_text[0], hour_text[0]) if char_prompt else ': '
     abort = False
     print()
     while True:
         minute = is_min and is_selected
         hour = not is_yes and is_selected
         print('\033[K'
-              f'{selected_prefix if minute else deselected_prefix}{min_text}')
+              '{}{}'.format(selected_prefix if minute else deselected_prefix, min_text))
         print('\033[K'
-              f'{selected_prefix if hour else deselected_prefix}{hour_text}')
+              '{}{}'.format(selected_prefix if hour else deselected_prefix, hour_text))
         print('\033[3A\r\033[K'
-              f'{question}{yn_prompt}{current_message}', end='', flush=True)
+              '{}{}{}'.format(question, yn_prompt, current_message), end='', flush=True)
         keypress = readchar.readkey()
         if keypress in [readchar.key.DOWN, readchar.key.UP]:
             is_min = not is_min
@@ -439,11 +439,11 @@ def get_number_arrows(
 
     return_value: Optional[int] = min_value
     current_value = return_value
-    max_min_prompt = f' ({str(min_value)},{str(max_value)}): '
+    max_min_prompt = ' ({},{}): '.format(str(min_value), str(max_value))
 
     while return_value is 0:
         print('\033[3A\r\033[K'
-            f'{prompt}{max_min_prompt}{current_value}', end='', flush=True)
+            '{}{}{}'.format(prompt, max_min_prompt, current_value), end='', flush=True)
         keypress = readchar.readkey()
         if keypress in [readchar.key.DOWN]:
             if (current_value - increment) > min_value:
