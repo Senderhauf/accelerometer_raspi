@@ -30,7 +30,7 @@ def get_number(
     Returns:
         float: The number input by the user.
     """
-    return_value: Optional[float] = None
+    return_value = None
     while return_value is None:
         input_value = input(prompt + ' ')
         try:
@@ -442,7 +442,7 @@ def get_number_arrows(
         int: number entered by user
     """
 
-    return_value: Optional[int] = min_value
+    return_value = min_value
     current_value = return_value
     max_min_prompt = ' ({},{}): '.format(str(min_value), str(max_value))
 
