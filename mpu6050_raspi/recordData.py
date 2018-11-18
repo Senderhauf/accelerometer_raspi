@@ -2,6 +2,7 @@
 from mpu6050 import mpu6050
 from time import time
 from datetime import datetime
+from Adafruit_CharLCD import Adafruit_CharLCD
 import csv
 import cutie
 
@@ -27,7 +28,7 @@ def record_data():
 
     curTime = time()
     sensor = mpu6050(0x68)
-
+    lcd = Adafruit_CharLCD()
 
     with open('{}.csv'.format(datetime.now()), 'w') as file:
         fieldnames = ['time', 'x', 'y', 'z']
@@ -36,6 +37,8 @@ def record_data():
         while(endtime > curTime):
             accelerometer_data = sensor.get_accel_data()
             accelerometer_data['time'] = curTime
+            lcd.clear()
+            lcd.message('time: {:8.2f}'.format(curTime))
             writer.writerow(accelerometer_data)
             curTime = time()
 
