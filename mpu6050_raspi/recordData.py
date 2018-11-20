@@ -10,21 +10,23 @@ import cutie
 
 def record_data():
 
-    is_min_type = cutie.prompt_min_or_hour('CHOOSE ') == 'min'
+    #is_min_type = cutie.prompt_min_or_hour('') == 'min'
+
+    lcd = Adafruit_CharLCD()
+    lcd.clear()
 
     duration = 0
 
-    if is_min_type:
-        duration = cutie.get_number_arrows('DURATION ', 5, 60, 0)
+    hours = 0
+    minutes = 0
 
-        # endtime = time() + (60 * float(duration))
-        endtime = time() + (60 * float(duration))
+    hours = cutie.get_number_arrows('HOURS', 1, 13, 0)
+    min = cutie.get_number_arrows('MIN', 1, 60, 0)
 
-    else:
-        duration = cutie.get_number_arrows('DURATION ', 5, 60, 0)
+    endtime = time() + (60 * float(hours)) + (360 * float(minutes))
 
-        endtime = time() + (360 * float(duration))
-
+    lcd.clear()
+    lcd.message('ENTER TO START')
     raw_input('ENTER TO START')
 
     curTime = time()
@@ -32,12 +34,10 @@ def record_data():
     lcd = Adafruit_CharLCD()
     lcd.clear()
 
-    if is_min_type:
-        finish = datetime.now() + timedelta(minutes = duration)
-        lcd.message('FINISH: {:02d}:{:02d}'.format(finish.hour, finish.minute))
-    else:
-        finish = datetime.now() + timedelta(hours = duration)
-        lcd.message('FINISH: {:02d}:{:02d}'.format(finish.hour, finish.minute))
+    finish = datetime.now() + timedelta(minutes = minutes) + timedelta(hours=hours)
+
+    lcd.message('RECORDING...\nFINISH: {:02d}:{:02d}'.format(finish.hour, finish.minute))
+    print('RECORDING...\nFINISH: {:02d}:{:02d}'.format(finish.hour, finish.minute))
 
     with open('{}.csv'.format(datetime.now()), 'w') as file:
         fieldnames = ['time', 'x', 'y', 'z']
@@ -49,6 +49,8 @@ def record_data():
             writer.writerow(accelerometer_data)
             curTime = time()
 
+    lcd.message('\nDONE')
+    print('DONE')
 
 def transfer_data_usb():
     return

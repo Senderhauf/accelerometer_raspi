@@ -381,7 +381,7 @@ def prompt_min_or_hour(
     yn_prompt = ' ({}/{}): '.format(min_text[0], hour_text[0]) if char_prompt else ': '
     abort = False
     lcd = Adafruit_CharLCD()
-
+    selected_prefix_lcd = '> '
     print()
 
     while True:
@@ -390,13 +390,13 @@ def prompt_min_or_hour(
         hour = not is_min and is_selected
         print('\033[K'
               '{}{}'.format(selected_prefix if minute else deselected_prefix, min_text))
-        lcd.message('{}{}'.format(selected_prefix if minute else deselected_prefix, min_text))
+        lcd.message('{}{}\n'.format(selected_prefix_lcd if minute else deselected_prefix, min_text))
         print('\033[K'
               '{}{}'.format(selected_prefix if hour else deselected_prefix, hour_text))
-        lcd.message('{}{}'.format(selected_prefix if hour else deselected_prefix, hour_text))
+        lcd.message('{}{}\n'.format(selected_prefix_lcd if hour else deselected_prefix, hour_text))
         print('\033[3A\r\033[K'
               '{}{}{}'.format(question, yn_prompt, current_message), end='')
-        lcd.message('{}{}{}'.format(question, yn_prompt, current_message))
+#        lcd.message('{}{}{}'.format(question, yn_prompt, current_message))
         sys.stdout.flush()
         keypress = readchar.readkey()
         if keypress in [readchar.key.DOWN, readchar.key.UP]:
@@ -456,27 +456,27 @@ def get_number_arrows(
         int: number entered by user
     """
     lcd = Adafruit_CharLCD()
-    return_value = min_value
-    current_value = return_value
-    max_min_prompt = ' ({},{}): '.format(str(min_value), str(max_value))
+    return_value = -1
+    current_value = 0
+    max_min_prompt = '({},{}): '.format(str(min_value), str(max_value))
 
-    while return_value is 0:
+    while return_value < min_value:
         print('\n')
         lcd.clear()
         print('\033[3A\r\033[K'
             '{}{}{}'.format(prompt, max_min_prompt, current_value), end='')
         lcd.message('{}{}{}'.format(prompt, max_min_prompt, current_value))
         sys.stdout.flush()
-        
+
         keypress = readchar.readkey()
         if keypress in [readchar.key.DOWN]:
-            if (current_value - increment) > min_value:
+            if (current_value - increment) >= min_value:
                 current_value -= increment
         elif keypress in [readchar.key.UP]:
             if (current_value + increment) < max_value:
                 current_value += increment
         elif keypress in [readchar.key.ENTER]:
-            if current_value < max_value and current_value > min_value:
+            if current_value < max_value and current_value >= min_value:
                 return_value = current_value
         print()
     print('\033[K\n\033[K\n\033[K\n\033[3A')
