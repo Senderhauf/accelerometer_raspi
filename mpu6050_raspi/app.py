@@ -128,9 +128,9 @@ def main():
 
         selected_option = cutie.select(options, selected_index=1)
 
-        if selected_option == 1:
+        if selected_option == 0:
             record_data()
-        elif selected_option == 2:
+        elif selected_option == 1:
             transfer_data_usb()
 
 
