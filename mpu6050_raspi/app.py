@@ -58,14 +58,14 @@ def transfer_data_usb():
     lcd.clear()
 
     #find usb and confirm hash
-    usb = get_mount_points()[0]
+    usb = get_mount_points()
 
-    while usb is None:
+    while not usb:
         options = ['Continue:', 'Back:']
         selected_option = cutie.select(options, selected_index=1)
         if selected_option == 'Back:':
             raise
-        usb = get_mount_points()[0]
+        usb = get_mount_points()
 
     hashfile = find_file('hash', get_mount_points()[0][1])
     
