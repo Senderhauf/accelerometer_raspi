@@ -1,36 +1,19 @@
-from __future__ import print_function
-import sys
-import getpass
+import os
+from glob import glob
+from subprocess import check_output, CalledProcessError
 
+def get_usb_devices():
+    sdb_devices = map(os.path.realpath, glob('/sys/block/sd*'))
+    usb_devices = (dev for dev in sdb_devices
+        if 'usb' in dev.split('/')[5])
+    return dict((os.path.basename(dev), dev) for dev in usb_devices)
 
-from colorama import init
-import readchar
+def get_mount_points(devices=None):
+    devices = devices or get_usb_devices() # if devices are None: get_usb_devices
+    output = check_output(['mount']).splitlines()
+    is_usb = lambda path: any(dev in path for dev in devices)
+    usb_info = (line for line in output if is_usb(line.split()[0]))
+    return [(info.split()[0], info.split()[2]) for info in usb_info]
 
-min_value = 0
-max_value = 60
-prompt = 'Enter duration: '
-increment = 5 
-
-return_value = min_value
-current_value = return_value
-max_min_prompt = ' ({},{}): '.format(str(min_value), str(max_value))
-while return_value is 0:
-    print('\n')
-    print('\033[3A\r\033[K'
-        '{}{}{}'.format(prompt, max_min_prompt, current_value), end='')
-    sys.stdout.flush()
-    
-    keypress = readchar.readkey()
-    if keypress in [readchar.key.DOWN]:
-        if (current_value - increment) > min_value:
-            current_value -= increment
-    elif keypress in [readchar.key.UP]:
-        if (current_value + increment) < max_value:
-            current_value += increment
-    elif keypress in [readchar.key.ENTER]:
-        if current_value < max_value and current_value > min_value:
-            return_value = current_value
-    print()
-print('\033[K\n\033[K\n\033[K\n\033[3A')
-
-print('return value: ' + str(return_value))
+if __name__ == '__main__':
+    print get_mount_points()
