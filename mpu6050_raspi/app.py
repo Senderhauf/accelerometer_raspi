@@ -63,7 +63,7 @@ def transfer_data_usb():
     while usb is None:
         options = ['Continue:', 'Back:']
         selected_option = cutie.select(options, selected_index=1)
-        if selected_option = 'Back:':
+        if selected_option == 'Back:':
             raise
 
     hashfile = find_file('hash', get_mount_points()[0][1])
