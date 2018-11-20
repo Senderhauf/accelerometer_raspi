@@ -126,9 +126,7 @@ def main():
             'Record Data',
             'Transfer Data']    
 
-        captions = [0]
-
-        selected_option = cutie.select(options, caption_indices=captions, selected_index=1)
+        selected_option = cutie.select(options, selected_index=1)
 
         if selected_option == 1:
             record_data()
