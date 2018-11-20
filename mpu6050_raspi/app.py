@@ -60,7 +60,7 @@ def transfer_data_usb():
     #find usb and confirm hash
     usb = get_mount_points()
 
-    while not usb:
+    while len(usb) == 0:
         options = ['Continue:', 'Back:']
         selected_option = cutie.select(options, selected_index=1)
         if selected_option == 'Back:':
