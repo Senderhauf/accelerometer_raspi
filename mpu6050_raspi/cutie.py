@@ -94,18 +94,28 @@ def select(
     Returns:
         int: The index that has been selected.
     """
+    lcd = Adafruit_CharLCD()
+    lcd.clear()
+    lcd_deselected_prefix = '[ ]'
+    lcd_selected_prefix = '[x]'
+
     print('\n' * (len(options) - 1))
     if caption_indices is None:
         caption_indices = []
     while True:
         print('\033[{}A'.format(len(options) + 1))
+        lcd.clear()
         for i, option in enumerate(options):
             if i not in caption_indices:
                 print('\033[K{}{}'.format(
                     selected_prefix if i == selected_index else
                     deselected_prefix, option))
+                lcd.message('{}{}'.format(
+                    lcd_selected_prefix if i == selected_index else
+                    lcd_deselected_prefix))
             elif i in caption_indices:
                 print('\033[K{}{}'.format(caption_prefix, options[i]))
+                lcd.message('{}{}'.format(caption_prefix, options[i]))
         keypress = readchar.readkey()
         if keypress == readchar.key.UP:
             new_index = selected_index

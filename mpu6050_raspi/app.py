@@ -131,11 +131,8 @@ def find_all_files(pattern, path):
 def main():
     """Main
     """
-
-    lcd = Adafruit_CharLCD()
     
     while True:
-        lcd.clear()
 
         options = [
             'Record Data',
