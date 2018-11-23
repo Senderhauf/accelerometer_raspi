@@ -75,10 +75,10 @@ def transfer_data_usb():
 	'''
 
 	lcd = Adafruit_CharLCD()
-    lcd.clear()
-    
-    #find usb and confirm hash
-    usb = get_usb_devices()
+	lcd.clear()
+
+	#find usb and confirm hash
+	usb = get_usb_devices()
 
     while len(usb) == 0:
     	lcd.clear()
