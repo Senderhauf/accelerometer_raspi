@@ -133,9 +133,10 @@ def main():
     """
 
     lcd = Adafruit_CharLCD()
-    lcd.clear()
     
     while True:
+        lcd.clear()
+
         options = [
             'Record Data',
             'Transfer Data']    
