@@ -32,6 +32,7 @@ def record_data():
 
     print('Current time: {} Endtime: {}'.format(time(),endtime))
     print('Difference: {}'.format(endtime - time()))
+    print('End Datetime: {}'.format(datetime.now()+timedelta(seconds=(endtime-time()))))
 
     lcd.clear()
     lcd.message('ENTER TO START')
