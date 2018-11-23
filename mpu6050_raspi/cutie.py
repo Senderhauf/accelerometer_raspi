@@ -3,7 +3,7 @@ from __future__ import print_function
 import sys
 
 import getpass
-from typing import List, Optional
+#from typing import List, Optional
 
 from colorama import init
 import readchar
