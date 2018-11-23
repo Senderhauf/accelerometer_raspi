@@ -9,7 +9,7 @@ import csv
 import cutie
 import os, fnmatch
 from glob import glob
-from subprocess import check_output, CalledProcessError
+import subprocess
 from os.path import expanduser
 import shutil
 
@@ -69,11 +69,15 @@ def record_data():
 ################################################################################################
 
 def transfer_data_usb():
+	'''
+	Only 1 usb should be allowed in the usb ports at any given time. 
+
+	'''
     lcd = Adafruit_CharLCD()
     lcd.clear()
 
     #find usb and confirm hash
-    usb = get_mount_points()
+    usb = get_usb_devices()
 
     while len(usb) == 0:
     	lcd.clear()
@@ -84,9 +88,16 @@ def transfer_data_usb():
         selected_option = cutie.select(options, selected_index=0)
         if selected_option == 1:
             return	# back to main menu
-        usb = get_mount_points()
+        usb = get_usb_devices()
 
-    hashfile = find_file('hash.key', get_mount_points()[0][1])
+    
+    # mount usb device if necessary
+    usb_mount_pt = get_mount_points()
+    if len(usb_mount_pt) == 0:
+	    bash_mount_cmd = 'sudo mount /dev/{} /media/usb/'.format(usb.keys()[0])
+	    subprocess.Popen(bash_mount_cmd.split())
+
+    hashfile = find_file('hash.key', '/media/usb/')
     
     if hashfile is None:
         print('No hash file found on usb.')
@@ -118,12 +129,14 @@ def get_usb_devices():
         if 'usb' in dev.split('/')[5])
     return dict((os.path.basename(dev), dev) for dev in usb_devices)
 
+
 def get_mount_points(devices=None):
     devices = devices or get_usb_devices() # if devices are None: get_usb_devices
-    output = check_output(['mount']).splitlines()
+    output = subprocess.check_output(['mount']).splitlines()
     is_usb = lambda path: any(dev in path for dev in devices)
     usb_info = (line for line in output if is_usb(line.split()[0]))
     return [(info.split()[0], info.split()[2]) for info in usb_info]
+
 
 def find_file(name, path):
     for root, dirs, files in os.walk(path):
