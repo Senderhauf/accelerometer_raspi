@@ -118,10 +118,16 @@ def transfer_data_usb():
 	lcd.clear()
 	lcd.message('COPYING FILE\nDONT UNPLUG USB')
 	#shutil.copy(selected_csv, '/media/usb'+selected_csv)
-	with open(selected_csv) as f:
-		with open('/media/usb'+selected_csv, 'w+') as usbf:
-			for line in f:
-				usbf.write(line)
+	
+	cmd = 'sudo chmod 777 /media/usb'
+	subprocess.check_output(cmd.split())
+
+	cmd = 'sudo touch /media/usb/new_csv'
+	subprocess.check_output(cmd.split())
+
+	cmd = 'sudo cp {} /media/usb/new_csv'.format(selected_csv)
+	subprocess.check_output(cmd.split())
+
 	sleep(1)
 
 	#done
