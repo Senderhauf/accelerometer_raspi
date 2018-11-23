@@ -28,7 +28,7 @@ def record_data():
     if minutes == -1:
     	return
 
-    endtime = time() + (360 * float(hours)) + (60 * float(minutes))
+    endtime = time() + (3600 * float(hours)) + (60 * float(minutes))
 
     print('Current time: {} Endtime: {}'.format(time(),endtime))
     print('Difference: {}'.format(endtime - time()))
