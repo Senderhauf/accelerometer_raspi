@@ -101,9 +101,10 @@ def transfer_data_usb():
 	hashfile = find_file('hash.key', '/media/usb/')
 
 	if hashfile is None:
-		print('No hash file found on usb.')
+		print('INVALID USB')
 		lcd.clear()
 		lcd.message('INVALID USB')
+		sleep(1)
 		return # back to main menu
 
 	#find all *.csv files and display select
@@ -114,7 +115,7 @@ def transfer_data_usb():
 	selected_csv = cutie.select(csv_files, selected_index=0)
 
 	lcd.clear()
-	lcd.message('COPYING FILE')
+	lcd.message('COPYING FILE\nDONT UNPLUG USB')
 	shutil.copy(selected_csv, usb+'/'+selected_csv)
 	sleep(1)
 
@@ -161,8 +162,8 @@ def main():
     while True:
 
         options = [
-            'Record Data',
-            'Transfer Data']    
+            'RECORD DATA',
+            'TRANSFER DATA']    
 
         selected_option = cutie.select(options, selected_index=0)
 
