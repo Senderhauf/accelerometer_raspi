@@ -449,8 +449,8 @@ def get_number_arrows(
     If the starting value 0 is entered prompt user until valid value is entered. 
 
     Args:
-        min_value (int): minimum value 
-        max_value (int): maximum value
+        min_value (int): minimum value inclusive
+        max_value (int): maximum value exclusive
 
     Returns:
         int: number entered by user
@@ -458,7 +458,7 @@ def get_number_arrows(
     lcd = Adafruit_CharLCD()
     return_value = -1
     current_value = 0
-    max_min_prompt = '({},{}): '.format(str(min_value), str(max_value))
+    max_min_prompt = '({},{}): '.format(str(min_value), str(max_value-1))
 
     while return_value < min_value:
         print('\n')
