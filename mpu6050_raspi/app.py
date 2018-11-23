@@ -116,7 +116,11 @@ def transfer_data_usb():
 
 	lcd.clear()
 	lcd.message('COPYING FILE\nDONT UNPLUG USB')
-	shutil.copy(selected_csv, '/media/usb'+selected_csv)
+	#shutil.copy(selected_csv, '/media/usb'+selected_csv)
+	with open(selected_csv) as f:
+		with open('/media/usb'+selected_csv, 'w') as usbf:
+			for line in f:
+				usbf.write(line)
 	sleep(1)
 
 	#done
