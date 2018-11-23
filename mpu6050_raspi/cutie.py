@@ -112,7 +112,7 @@ def select(
                     deselected_prefix, option))
                 lcd.message('{}{}'.format(
                     lcd_selected_prefix if i == selected_index else
-                    lcd_deselected_prefix))
+                    lcd_deselected_prefix, option))
             elif i in caption_indices:
                 print('\033[K{}{}'.format(caption_prefix, options[i]))
                 lcd.message('{}{}'.format(caption_prefix, options[i]))
