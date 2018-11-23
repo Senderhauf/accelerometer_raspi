@@ -83,7 +83,7 @@ def transfer_data_usb():
         options = ['CONNECT USB', 'BACK']
         selected_option = cutie.select(options, selected_index=0)
         if selected_option == 1:
-            raise
+            raise Exception('Navigate back to main menu')
         usb = get_mount_points()
 
     hashfile = find_file('hash.key', get_mount_points()[0][1])
@@ -92,7 +92,7 @@ def transfer_data_usb():
         print('No hash file found on usb.')
         lcd.clear()
         lcd.message('INVALID USB')
-        raise 
+        raise Exception('Navigate back to main menu')
 
     #find all *.csv files and display select
     home = expanduser('~')
