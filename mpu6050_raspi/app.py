@@ -30,6 +30,9 @@ def record_data():
 
     endtime = time() + (60 * float(hours)) + (360 * float(minutes))
 
+    print('Current time: {} Endtime: {}'.format(time(),endtime))
+    print('Difference: {}'.format(endtime - time()))
+
     lcd.clear()
     lcd.message('ENTER TO START')
     raw_input('ENTER TO START')
