@@ -80,21 +80,21 @@ def transfer_data_usb():
 	#find usb and confirm hash
 	usb = get_usb_devices()
 
-    while len(usb) == 0:
-    	lcd.clear()
-    	lcd.message('NO USB CONNECTED')
-    	print('NO USB CONNECTED')
-    	sleep(1)
-        options = ['CONNECT USB', 'BACK']
-        selected_option = cutie.select(options, selected_index=0)
-        if selected_option == 1:
-            return	# back to main menu
-        usb = get_usb_devices()
+	while len(usb) == 0:
+		lcd.clear()
+		lcd.message('NO USB CONNECTED')
+		print('NO USB CONNECTED')
+		sleep(1)
+	    options = ['CONNECT USB', 'BACK']
+	    selected_option = cutie.select(options, selected_index=0)
+	    if selected_option == 1:
+	        return	# back to main menu
+	    usb = get_usb_devices()
 
-    
-    # mount usb device if necessary
-    usb_mount_pt = get_mount_points()
-    if len(usb_mount_pt) == 0:
+
+	# mount usb device if necessary
+	usb_mount_pt = get_mount_points()
+	if len(usb_mount_pt) == 0:
 	    bash_mount_cmd = 'sudo mount /dev/{} /media/usb/'.format(usb.keys()[0])
 	    subprocess.Popen(bash_mount_cmd.split())
 
