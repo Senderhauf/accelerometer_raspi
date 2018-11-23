@@ -98,8 +98,8 @@ def transfer_data_usb():
 	    bash_mount_cmd = 'sudo mount /dev/{} /media/usb/'.format(usb.keys()[0])
 	    subprocess.Popen(bash_mount_cmd.split())
 
-    hashfile = find_file('hash.key', '/media/usb/')
-    
+	hashfile = find_file('hash.key', '/media/usb/')
+
     if hashfile is None:
         print('No hash file found on usb.')
         lcd.clear()
