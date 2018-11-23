@@ -106,23 +106,23 @@ def transfer_data_usb():
 		lcd.message('INVALID USB')
 		return # back to main menu
 
-    #find all *.csv files and display select
-    home = expanduser('~')
-    csv_files = find_all_files('*.csv', home + '/mpu6050_raspi/mpu6050_raspi/')
+	#find all *.csv files and display select
+	home = expanduser('~')
+	csv_files = find_all_files('*.csv', home + '/mpu6050_raspi/mpu6050_raspi/')
 
-    #transfer selected file to usb
-    selected_csv = cutie.select(csv_files, selected_index=0)
+	#transfer selected file to usb
+	selected_csv = cutie.select(csv_files, selected_index=0)
 
-    lcd.clear()
-    lcd.message('COPYING FILE')
-    shutil.copy(selected_csv, usb+'/'+selected_csv)
-    sleep(1)
+	lcd.clear()
+	lcd.message('COPYING FILE')
+	shutil.copy(selected_csv, usb+'/'+selected_csv)
+	sleep(1)
 
-    #done
-    lcd.clear()
-    lcd.message('DONE')
-    sleep(1)
-    return
+	#done
+	lcd.clear()
+	lcd.message('DONE')
+	sleep(1)
+	return
 
 def get_usb_devices():
     sdb_devices = map(os.path.realpath, glob('/sys/block/sd*'))
