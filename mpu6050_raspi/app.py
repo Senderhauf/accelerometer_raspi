@@ -112,11 +112,11 @@ def transfer_data_usb():
 	csv_files = find_all_files('*.csv', home + '/mpu6050_raspi/mpu6050_raspi/')
 
 	#transfer selected file to usb
-	selected_csv = cutie.select(csv_files, selected_index=0)
+	selected_csv = csv_files[cutie.select(csv_files, selected_index=0)]
 
 	lcd.clear()
 	lcd.message('COPYING FILE\nDONT UNPLUG USB')
-	shutil.copy(selected_csv, usb+'/'+selected_csv)
+	shutil.copy(selected_csv, '/media/usb/'+selected_csv)
 	sleep(1)
 
 	#done
