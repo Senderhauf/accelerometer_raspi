@@ -52,6 +52,10 @@ def record_data():
     lcd.message('RECORDING...\nFINISH: {:02d}:{:02d}'.format(finish.hour, finish.minute))
     print('RECORDING...\nFINISH: {:02d}:{:02d}'.format(finish.hour, finish.minute))
 
+
+    # write function to check if /dev/ttyUSB0 is available (sensor is plugged in correctly)
+    # excute following script: java -jar ~/BannerQM42TestApplication.jar -config 1000RPM-5Hz_1Device.JSON -logfile test.csv -port /dev/ttyUSB0
+
     with open('{}.csv'.format(datetime.now()), 'w') as file:
         fieldnames = ['time', 'x', 'y', 'z']
         writer = csv.DictWriter(file, fieldnames)
