@@ -100,12 +100,12 @@ def transfer_data_usb():
 
 	hashfile = find_file('hash.key', '/media/usb/')
 
-    if hashfile is None:
-        print('No hash file found on usb.')
-        lcd.clear()
-        lcd.message('INVALID USB')
-        return # back to main menu
-
+	if hashfile is None:
+		print('No hash file found on usb.')
+		lcd.clear()
+		lcd.message('INVALID USB')
+		return # back to main menu
+		
     #find all *.csv files and display select
     home = expanduser('~')
     csv_files = find_all_files('*.csv', home + '/mpu6050_raspi/mpu6050_raspi/')
