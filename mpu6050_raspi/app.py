@@ -24,8 +24,8 @@ def record_data():
     hours = cutie.get_number_arrows('HOURS', 1, 13, 0)
     if hours == -1:
     	return
-    min = cutie.get_number_arrows('MIN', 1, 60, 0)
-    if min == -1:
+    minutes = cutie.get_number_arrows('MIN', 1, 60, 0)
+    if minutes == -1:
     	return
 
     endtime = time() + (60 * float(hours)) + (360 * float(minutes))
