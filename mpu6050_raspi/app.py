@@ -22,7 +22,11 @@ def record_data():
     minutes = 0
 
     hours = cutie.get_number_arrows('HOURS', 1, 13, 0)
+    if hours == -1:
+    	return
     min = cutie.get_number_arrows('MIN', 1, 60, 0)
+    if min == -1:
+    	return
 
     endtime = time() + (60 * float(hours)) + (360 * float(minutes))
 
@@ -52,6 +56,9 @@ def record_data():
 
     lcd.message('\nDONE')
     print('DONE')
+
+
+################################################################################################
 
 def transfer_data_usb():
     lcd = Adafruit_CharLCD()
@@ -119,9 +126,15 @@ def find_all_files(pattern, path):
                 result.append(os.path.join(root, name))
     return result
 
+################################################################################################
+
 def main():
     """Main
     """
+
+    lcd = Adafruit_CharLCD()
+    lcd.clear()
+    
     while True:
         options = [
             'Record Data',
