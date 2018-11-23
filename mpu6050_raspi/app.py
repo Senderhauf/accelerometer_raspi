@@ -1,5 +1,5 @@
 
-from mpu6050 import mpu6050
+#from mpu6050 import mpu6050
 from time import time
 from time import sleep
 from datetime import datetime
@@ -43,7 +43,7 @@ def record_data():
     raw_input('ENTER TO START')
 
     curTime = time()
-    sensor = mpu6050(0x68)
+    #sensor = mpu6050(0x68)
     lcd = Adafruit_CharLCD()
     lcd.clear()
 
@@ -57,7 +57,8 @@ def record_data():
         writer = csv.DictWriter(file, fieldnames)
         writer.writeheader()
         while(endtime > curTime):
-            accelerometer_data = sensor.get_accel_data()
+            #accelerometer_data = {sensor.get_accel_data()}
+            accelerometer_data = {}
             accelerometer_data['time'] = curTime
             writer.writerow(accelerometer_data)
             curTime = time()
