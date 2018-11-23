@@ -85,11 +85,11 @@ def transfer_data_usb():
 		lcd.message('NO USB CONNECTED')
 		print('NO USB CONNECTED')
 		sleep(1)
-	    options = ['CONNECT USB', 'BACK']
-	    selected_option = cutie.select(options, selected_index=0)
-	    if selected_option == 1:
-	        return	# back to main menu
-	    usb = get_usb_devices()
+		options = ['CONNECT USB', 'BACK']
+		selected_option = cutie.select(options, selected_index=0)
+		if selected_option == 1:
+			return	# back to main menu
+		usb = get_usb_devices()
 
 
 	# mount usb device if necessary
