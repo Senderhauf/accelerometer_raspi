@@ -28,11 +28,13 @@ def record_data():
     if minutes == -1:
     	return
 
-    endtime = time() + (3600 * float(hours)) + (60 * float(minutes))
+    if minutes+hours == 0:
+    	lcd.clear()
+    	lcd.message('NO TIME ENTERED')
+    	time.sleep(1)
+    	return
 
-    print('Current time: {} Endtime: {}'.format(time(),endtime))
-    print('Difference: {}'.format(endtime - time()))
-    print('End Datetime: {}'.format(datetime.now()+timedelta(seconds=(endtime-time()))))
+    endtime = time() + (3600 * float(hours)) + (60 * float(minutes))
 
     lcd.clear()
     lcd.message('ENTER TO START')
