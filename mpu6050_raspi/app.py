@@ -1,7 +1,7 @@
 
 from mpu6050 import mpu6050
 from time import time
-import time
+from time import sleep
 from datetime import datetime
 from datetime import timedelta
 from Adafruit_CharLCD import Adafruit_CharLCD
@@ -32,7 +32,8 @@ def record_data():
     if minutes+hours == 0:
     	lcd.clear()
     	lcd.message('NO TIME ENTERED')
-    	time.sleep(1)
+    	print('NO TIME ENTERED')
+    	sleep(1)
     	return
 
     endtime = time() + (3600 * float(hours)) + (60 * float(minutes))
@@ -99,12 +100,12 @@ def transfer_data_usb():
     lcd.clear()
     lcd.message('COPYING FILE')
     shutil.copy(selected_csv, usb+'/'+selected_csv)
-    time.sleep(1)
+    sleep(1)
 
     #done
     lcd.clear()
     lcd.message('DONE')
-    time.sleep(1)
+    sleep(1)
     return
 
 def get_usb_devices():
