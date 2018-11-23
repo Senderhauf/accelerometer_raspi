@@ -1,6 +1,7 @@
 
 from mpu6050 import mpu6050
 from time import time
+import time
 from datetime import datetime
 from datetime import timedelta
 from Adafruit_CharLCD import Adafruit_CharLCD
