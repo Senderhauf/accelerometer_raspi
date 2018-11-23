@@ -76,13 +76,17 @@ def transfer_data_usb():
     usb = get_mount_points()
 
     while len(usb) == 0:
-        options = ['Continue:', 'Back:']
-        selected_option = cutie.select(options, selected_index=1)
-        if selected_option == 'Back:':
+    	lcd.clear()
+    	lcd.message('NO USB CONNECTED')
+    	print('NO USB CONNECTED')
+    	sleep(1)
+        options = ['CONNECT USB', 'BACK']
+        selected_option = cutie.select(options, selected_index=0)
+        if selected_option == 1:
             raise
         usb = get_mount_points()
 
-    hashfile = find_file('hash', get_mount_points()[0][1])
+    hashfile = find_file('hash.key', get_mount_points()[0][1])
     
     if hashfile is None:
         print('No hash file found on usb.')
@@ -95,7 +99,7 @@ def transfer_data_usb():
     csv_files = find_all_files('*.csv', home + '/mpu6050_raspi/mpu6050_raspi/')
 
     #transfer selected file to usb
-    selected_csv = cutie.select(csv_files, selected_index=1)
+    selected_csv = cutie.select(csv_files, selected_index=0)
 
     lcd.clear()
     lcd.message('COPYING FILE')
@@ -146,7 +150,7 @@ def main():
             'Record Data',
             'Transfer Data']    
 
-        selected_option = cutie.select(options, selected_index=1)
+        selected_option = cutie.select(options, selected_index=0)
 
         if selected_option == 0:
             record_data()
