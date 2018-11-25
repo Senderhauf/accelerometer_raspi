@@ -11,11 +11,7 @@ from time import sleep
 
 
 def transfer_usb():
-    '''
-    Only 1 usb should be allowed in the usb ports at any given time. 
-
-	'''
-
+	
 	lcd = Adafruit_CharLCD()
 	lcd.clear()
 
