@@ -7,6 +7,7 @@ from glob import glob
 import subprocess
 from os.path import expanduser
 import shutil
+from time import sleep
 
 
 def transfer_usb():
@@ -48,9 +49,9 @@ def transfer_usb():
 		sleep(1)
 		return # back to main menu
 
-	#find all *.csv files and display select
+	# find all *.csv files and display select
 	home = expanduser('~')
-	csv_files = find_all_files('*.csv', home + '/mpu6050_raspi/mpu6050_raspi/')
+	csv_files = find_all_files('*.csv', home + '/accelerometer_raspi/data/')
 
 	#transfer selected file to usb
 	selected_csv = csv_files[cutie.select(csv_files, selected_index=0)]
@@ -59,6 +60,7 @@ def transfer_usb():
 	lcd.message('COPYING FILE\nDONT UNPLUG USB')
 	#shutil.copy(selected_csv, '/media/usb'+selected_csv)
 	
+	# hacky workaround using bash executed in python 
 	cmd = 'sudo chmod 777 /media/usb'
 	subprocess.check_output(cmd.split())
 
