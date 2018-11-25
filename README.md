@@ -1,4 +1,4 @@
-# mpu6050_raspi
+# accelerometer_raspi
 
 ## About
 
