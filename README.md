@@ -61,3 +61,7 @@ This project will be interfacing an MPU6050 accelerometer/gyroscope/temperature 
 
 ### [ ] Define necessary apis  
 
+>Record Data
+>Transfer Data
+
+
