@@ -5,8 +5,9 @@ from datetime import timedelta
 from Adafruit_CharLCD import Adafruit_CharLCD
 import csv
 import cutie
-import os.path, os.chdir
-
+import os.path
+import sys
+import subprocess
 
 def record_data():
     lcd = Adafruit_CharLCD()
@@ -56,10 +57,10 @@ def record_data():
     print('RECORDING...\nFINISH: {:02d}:{:02d}'.format(finish.hour, finish.minute))
  
     # excute following script: java -jar ~/BannerQM42TestApplication.jar -config 1000RPM-5Hz_1Device.JSON -logfile test.csv -port /dev/ttyUSB0
-    os.chdir('../data')
-    cmd = 'java -jar ~/BannerQM42TestApplication.jar -config 1000RPM-5Hz_1Device.JSON -logfile {}.csv -port /dev/ttyUSB0'.format(datetime.now.strftime('%Y-%m-%d_%H:%M:%S'))
+    sys.path.append('/home/pi/accelerometer_raspi/data')
+    cmd = 'java -jar ~/BannerQM42TestApplication.jar -config 1000RPM-5Hz_1Device.JSON -logfile {}.csv -port /dev/ttyUSB0'.format(datetime.now().strftime('%Y-%m-%d_%H:%M:%S'))
     subprocess.check_output(cmd.split())
-    os.chdir('../source')
+    sys.path.append('/home/pi/accelerometer_raspi/source')
 
     lcd.message('\nDONE')
     print('DONE')

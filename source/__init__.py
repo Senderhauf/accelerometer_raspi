@@ -1,6 +1,7 @@
 
-from .record_data import record_data
-from .transfer_usb import transfer_usb
+from record_data import record_data
+from transfer_usb import transfer_usb
+import cutie
 
 def main():
     """Main
