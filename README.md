@@ -58,10 +58,25 @@ This project will be interfacing an MPU6050 accelerometer/gyroscope/temperature 
 >> User should revieve real time and end time status (succes or failure) of write to USB
 
 
+>#### Use Case #3: 
+
+>Use case name: 
+>> DeleteData
+
+> Participating Actor:
+>> Edge Device Operator
+
+>>Flow of Events:
+
+>Entry Condition:
+>> Data files must be saved in memory
+
+>Quality Requirements:
+>> User should have to confirm deletion and recieve notification when deletion complete
+
 
 ### [X] Define necessary apis  
 
 >Record Data
 >Transfer Data
-
-
+>Delete Data
