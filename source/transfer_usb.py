@@ -59,7 +59,7 @@ def transfer_usb():
 	lcd.clear()
 	lcd.message('COPYING FILE\nDONT UNPLUG USB')
 	#shutil.copy(selected_csv, '/media/usb'+selected_csv)
-	
+
 	# hacky workaround using bash executed in python 
 	cmd = 'sudo chmod 777 /media/usb'
 	subprocess.check_output(cmd.split())
