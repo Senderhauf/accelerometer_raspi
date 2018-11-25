@@ -7,7 +7,7 @@ This project will be interfacing an MPU6050 accelerometer/gyroscope/temperature 
 ## Workflow
 ### [X] Define General Python project structure
 
-### [ ] Define Use cases 
+### [X] Define Use cases 
 
 
 > #### Use Case #1:
@@ -59,7 +59,7 @@ This project will be interfacing an MPU6050 accelerometer/gyroscope/temperature 
 
 
 
-### [ ] Define necessary apis  
+### [X] Define necessary apis  
 
 >Record Data
 >Transfer Data
