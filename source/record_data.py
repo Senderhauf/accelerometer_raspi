@@ -1,7 +1,6 @@
 from time import time
 from time import sleep
-from datetime import datetime
-from datetime import timedelta
+from datetime 
 from Adafruit_CharLCD import Adafruit_CharLCD
 import csv
 import cutie
@@ -50,18 +49,18 @@ def record_data():
     raw_input('ENTER TO START')
 
     curTime = time()
-    finish = datetime.now() + timedelta(minutes = minutes) + timedelta(hours=hours)
+    finish = datetime.utcfromtimestamp(endTime)
 
     lcd.clear()
-    lcd.message('RECORDING...\nFINISH: {:02d}:{:02d}'.format(finish.hour, finish.minute))
-    print('RECORDING...\nFINISH: {:02d}:{:02d}'.format(finish.hour, finish.minute))
+    lcd.message('FINISH: {:02d}:{:02d}\nRECORDING...'.format(finish.hour, finish.minute))
+    print('FINISH: {:02d}:{:02d}\nRECORDING...'.format(finish.hour, finish.minute))
  
     # excute following script: java -jar ~/BannerQM42TestApplication.jar -config 1000RPM-5Hz_1Device.JSON -logfile test.csv -port /dev/ttyUSB0
     os.chdir('/home/pi')
     cmd = 'java -jar BannerQM42TestApplication.jar -config 1000RPM-5Hz_1Device.JSON -logfile {}.csv -port /dev/ttyUSB0'
     cmd = cmd.format(datetime.now().strftime('%Y-%m-%d_%H:%M:%S'))
     #subprocess.check_output(cmd.split())
-    
+
     # see StackO: https://stackoverflow.com/questions/4789837/how-to-terminate-a-python-subprocess-launched-with-shell-true
     pro = subprocess.Popen(cmd.split(), stdout=subprocess.PIPE, preexec_fn=os.setsid)
 
