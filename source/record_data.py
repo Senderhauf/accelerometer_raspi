@@ -5,8 +5,8 @@ from datetime import timedelta
 from Adafruit_CharLCD import Adafruit_CharLCD
 import csv
 import cutie
-import os.path
-import sys
+import os
+import signal
 import subprocess
 
 def record_data():
@@ -30,7 +30,7 @@ def record_data():
     	sleep(1)
     	return
 
-    endtime = time() + (3600 * float(hours)) + (60 * float(minutes))
+    endTime = time() + (3600 * float(hours)) + (60 * float(minutes))
 
     # check if sensor is attached via /dev/ttyUSB0
     sensor_connected = os.path.exists('/dev/ttyUSB0')
@@ -57,11 +57,21 @@ def record_data():
     print('RECORDING...\nFINISH: {:02d}:{:02d}'.format(finish.hour, finish.minute))
  
     # excute following script: java -jar ~/BannerQM42TestApplication.jar -config 1000RPM-5Hz_1Device.JSON -logfile test.csv -port /dev/ttyUSB0
-    sys.path.append('/home/pi')
+    os.chdir('/home/pi')
     cmd = 'java -jar BannerQM42TestApplication.jar -config 1000RPM-5Hz_1Device.JSON -logfile {}.csv -port /dev/ttyUSB0'
     cmd = cmd.format(datetime.now().strftime('%Y-%m-%d_%H:%M:%S'))
-    subprocess.check_output(cmd.split())
-    sys.path.append('/home/pi/accelerometer_raspi/source')
+    #subprocess.check_output(cmd.split())
+    
+    # see StackO: https://stackoverflow.com/questions/4789837/how-to-terminate-a-python-subprocess-launched-with-shell-true
+    pro = subprocess.Popen(cmd.split(), stdout=subprocess.PIPE, shell=True, preexec_fn=os.setsid)
+
+    while True:
+        if(time() >= endTime):
+            break
+
+    os.killpg(os.getpgid(pro.pid), signal.SIGTERM)
+
+    os.chdir('/home/pi/accelerometer_raspi/source')
 
     lcd.message('\nDONE')
     print('DONE')
