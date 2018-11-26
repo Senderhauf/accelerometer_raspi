@@ -75,6 +75,7 @@ def transfer_usb():
 	#done
 	lcd.clear()
 	lcd.message('DONE')
+	print('DONE')
 	sleep(1)
 	return
 
