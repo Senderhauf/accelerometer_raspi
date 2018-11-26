@@ -58,7 +58,8 @@ def record_data():
  
     # excute following script: java -jar ~/BannerQM42TestApplication.jar -config 1000RPM-5Hz_1Device.JSON -logfile test.csv -port /dev/ttyUSB0
     sys.path.append('/home/pi')
-    cmd = 'java -jar BannerQM42TestApplication.jar -config 1000RPM-5Hz_1Device.JSON -logfile {}{}.csv -port /dev/ttyUSB0'.format(os.path.expanduser('~')+'/accelerometer_raspi/data/', datetime.now().strftime('%Y-%m-%d_%H:%M:%S'))
+    cmd = 'java -jar BannerQM42TestApplication.jar -config 1000RPM-5Hz_1Device.JSON -logfile {}.csv -port /dev/ttyUSB0'
+    cmd = cmd.format(datetime.now().strftime('%Y-%m-%d_%H:%M:%S'))
     subprocess.check_output(cmd.split())
     sys.path.append('/home/pi/accelerometer_raspi/source')
 
