@@ -67,7 +67,7 @@ def transfer_usb():
 	selected_csv_file = selected_csv_file.replace(' ', '')
 	cmd = 'sudo cp {} /media/usb/{}'.format(selected_csv, selected_csv_file)
 	cmd = cmd.split()
-	cmd = cmd[:2] + [cmd[2]+cmd[3]] + cmd[4:]
+	cmd = cmd[:2] + [cmd[2]+' '+cmd[3]] + cmd[4:]
 	subprocess.check_output(cmd)
 
 	sleep(1)
