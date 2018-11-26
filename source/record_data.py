@@ -49,7 +49,7 @@ def record_data():
     raw_input('ENTER TO START')
 
     curTime = time()
-    finish = datetime.datetime.utcfromtimestamp(endTime)
+    finish = datetime.datetime.fromtimestamp(endTime)
 
     lcd.clear()
     lcd.message('FINISH: {:02d}:{:02d}\nRECORDING...'.format(finish.hour, finish.minute))
