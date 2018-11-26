@@ -63,7 +63,7 @@ def record_data():
     #subprocess.check_output(cmd.split())
     
     # see StackO: https://stackoverflow.com/questions/4789837/how-to-terminate-a-python-subprocess-launched-with-shell-true
-    pro = subprocess.Popen(cmd.split(), stdout=subprocess.PIPE, shell=True, preexec_fn=os.setsid)
+    pro = subprocess.Popen(cmd.split(), stdout=subprocess.PIPE, preexec_fn=os.setsid)
 
     while True:
         if(time() >= endTime):
