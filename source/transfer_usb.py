@@ -11,7 +11,7 @@ from time import sleep
 
 
 def transfer_usb():
-	
+
 	lcd = Adafruit_CharLCD()
 	lcd.clear()
 
@@ -47,7 +47,7 @@ def transfer_usb():
 
 	# find all *.csv files and display select
 	home = expanduser('~')
-	csv_files = find_all_files('*.csv', home + '/accelerometer_raspi/data/')
+	csv_files = find_all_files('*.csv', home)
 
 	#transfer selected file to usb
 	selected_csv = csv_files[cutie.select(csv_files, selected_index=0)]
