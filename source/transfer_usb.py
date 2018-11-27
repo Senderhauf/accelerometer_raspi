@@ -69,11 +69,12 @@ def transfer_usb():
 	cmd = 'sudo chmod 777 /media/usb'
 	subprocess.check_output(cmd.split())
 
-	cmd = 'sudo touch /media/usb/new_csv'
-	subprocess.check_output(cmd.split())
-
 	selected_csv_file = selected_csv.split('/')[-1]
 	selected_csv_file = selected_csv_file.replace(' ', '')
+
+	cmd = 'sudo touch /media/usb/{}'.format(selected_csv_file)
+	subprocess.check_output(cmd.split())
+
 	cmd = 'sudo cp {} /media/usb/{}'.format(selected_csv, selected_csv_file)
 	cmd = cmd.split()
 	cmd = cmd[:2] + [cmd[2]+' '+cmd[3]] + cmd[4:]
