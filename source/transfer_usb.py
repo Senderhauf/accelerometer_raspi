@@ -75,7 +75,7 @@ def transfer_usb():
 	selected_csv_file = selected_csv_file.replace(' ', '')
 
 	cmd = 'touch /media/usb/{}'.format(selected_csv_file)
-	subprocess.check_output(cmd.split())
+	#subprocess.check_output(cmd.split())
 
 	print('DEBUG 2')
 
