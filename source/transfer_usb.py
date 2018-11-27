@@ -52,7 +52,7 @@ def transfer_usb():
 	csv_files_lcd = [] 
 	for file in csv_files:
 		strs = file.split('_')
-		tmp = tmp[1]+tmp[2]
+		tmp = strs[1]+strs[2]
 		tmp = tmp[:tmp.rfind(':')]
 		csv_files_lcd.append(tmp)
 
