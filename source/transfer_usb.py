@@ -49,8 +49,16 @@ def transfer_usb():
 	home = expanduser('~')
 	csv_files = find_all_files('*.csv', home)
 
+	csv_files_lcd = [] 
+	for file in csv_files:
+		tmp = file.split('_')[1]
+		tmp = tmp[:tmp.rfind(':')]
+		csv_files_lcd.append(tmp)
+
 	#transfer selected file to usb
-	selected_csv = csv_files[cutie.select(csv_files, selected_index=0)]
+	
+	selected_csv = csv_files[cutie.select(csv_files_lcd, selected_index=0)]
+	print('SELECTED CSV: '+ selected_csv)
 
 	lcd.clear()
 	lcd.message('COPYING FILE\nDONT UNPLUG USB')
