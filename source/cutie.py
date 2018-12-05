@@ -10,9 +10,14 @@ import readchar
 
 from Adafruit_CharLCD import Adafruit_CharLCD
 
+from gpiozero import button
+
+button_green = Button(2)
+button_red = Button(3)
+button_down = Button(4)
+button_up = Button(17)
 
 init()
-
 
 def get_number(
         prompt,                        # type: str
@@ -105,6 +110,8 @@ def select(
     while True:
         print('\033[{}A'.format(len(options) + 1))
         lcd.clear()
+        button_status = get_button_status()
+
         for i, option in enumerate(options):
             if i not in caption_indices:
                 print('\033[K{}{}'.format(
@@ -117,14 +124,14 @@ def select(
                 print('\033[K{}{}'.format(caption_prefix, options[i]))
                 lcd.message('{}{}'.format(caption_prefix, options[i]))
         keypress = readchar.readkey()
-        if keypress == readchar.key.UP:
+        if keypress == readchar.key.UP or button_status['up']:
             new_index = selected_index
             while new_index > 0:
                 new_index -= 1
                 if new_index not in caption_indices:
                     selected_index = new_index
                     break
-        elif keypress == readchar.key.DOWN:
+        elif keypress == readchar.key.DOWN or button_status['down']:
             new_index = selected_index
             while new_index < len(options) - 1:
                 new_index += 1
@@ -493,3 +500,10 @@ def get_number_arrows(
         print()
     print('\033[K\n\033[K\n\033[K\n\033[3A')
     return return_value
+
+
+def get_button_status():
+    return {'up': button_up.is_pressed, 
+            'down': button_down.is_pressed, 
+            'green': button_green.is_pressed, 
+            'red': button_red.is_pressed}
