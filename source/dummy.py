@@ -17,7 +17,7 @@ def get_button_status():
 if __name__ == "__main__":
 	
 	lcd = Adafruit_CharLCD()
-    lcd.clear()
+	lcd.clear()
 	
 	while True:
 		button_status = get_button_status()
