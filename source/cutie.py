@@ -10,7 +10,7 @@ import readchar
 
 from Adafruit_CharLCD import Adafruit_CharLCD
 
-from gpiozero import button
+from gpiozero import Button
 
 button_green = Button(2)
 button_red = Button(3)
