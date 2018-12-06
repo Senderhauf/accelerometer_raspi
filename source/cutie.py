@@ -23,10 +23,10 @@ button_up = Button(17)
 init()
 
 def wait_for_button():
-    button_up_pressed = button_up.wait_for_button(.05)
-    button_down_pressed = button_down.wait_for_button(.05)
-    button_red_pressed = button_red.wait_for_button(.05)
-    button_green_pressed = button_green.wait_for_button(.05)
+    button_up_pressed = button_up.wait_for_press(.05)
+    button_down_pressed = button_down.wait_for_press(.05)
+    button_red_pressed = button_red.wait_for_press(.05)
+    button_green_pressed = button_green.wait_for_press(.05)
 
     if button_up_pressed:
         return 'up'
@@ -117,10 +117,6 @@ def select(
     Returns:
         int: The index that has been selected.
     """
-    button_up_pressed = False
-    button_down_pressed = False
-    button_red_pressed = False
-    button_green_pressed = False
 
     lcd = Adafruit_CharLCD()
     lcd.clear()
