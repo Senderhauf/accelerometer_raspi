@@ -42,8 +42,10 @@ def wait_for_button():
         return 'down'
     elif button_green_pressed:
         return 'green'
-    else:
+    elif button_red_pressed:
         return 'red'
+    else:
+        return None
 
 def get_number(
         prompt,                        # type: str
@@ -171,6 +173,7 @@ def select(
                     selected_index = new_index
                     break
         else:
+            button_pressed = None
             break
     return selected_index
 
