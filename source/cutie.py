@@ -520,17 +520,27 @@ def get_number_arrows(
         lcd.message('{}{}{}'.format(prompt, max_min_prompt, current_value))
         sys.stdout.flush()
 
-        keypress = readchar.readkey()
-        if keypress in [readchar.key.DOWN]:
+        #keypress = readchar.readkey()
+
+        button_pressed = None
+
+        while button_pressed is None:
+            button_pressed = wait_for_button()
+
+        #if keypress in [readchar.key.DOWN]:
+        if button_pressed == 'down':
             if (current_value - increment) >= min_value:
                 current_value -= increment
-        elif keypress in [readchar.key.UP]:
+        #elif keypress in [readchar.key.UP]:
+        elif button_pressed == 'up':
             if (current_value + increment) < max_value:
                 current_value += increment
-        elif keypress in [readchar.key.ENTER]:
+        #elif keypress in [readchar.key.ENTER]:
+        elif button_pressed == 'green':
             if current_value < max_value and current_value >= min_value:
                 return_value = current_value
-        elif keypress in [readchar.key.BACKSPACE]:
+        #elif keypress in [readchar.key.BACKSPACE]:
+        elif button_pressed == 'red':
             return -1
         print()
     print('\033[K\n\033[K\n\033[K\n\033[3A')
