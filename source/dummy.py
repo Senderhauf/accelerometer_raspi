@@ -3,6 +3,7 @@ from Adafruit_CharLCD import Adafruit_CharLCD
 from gpiozero import Button
 
 from time import sleep
+from signal import pause
 
 button_green = Button(2)
 button_red = Button(3)
@@ -38,6 +39,4 @@ if __name__ == "__main__":
 	button_red.when_pressed = button_red_pressed
 	button_green.when_pressed = button_green_pressed
 	
-	while True:
-		lcd.clear()
-		lcd.message('Waiting for Button')
+	pause()
