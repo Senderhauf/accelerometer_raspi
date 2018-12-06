@@ -35,9 +35,7 @@ def button_green_pressed():
 	sleep(1)
 
 def button_up_pressed_wait():
-	lcd.clear()
-	lcd.message('Button UP pressed')
-	sleep(1)
+	button_up_pressed = True
 
 if __name__ == "__main__":
 	
