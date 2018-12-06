@@ -10,8 +10,6 @@ button_red = Button(3)
 button_down = Button(4)
 button_up = Button(17)
 
-button_up_pressed = False
-
 lcd = Adafruit_CharLCD()
 
 def button_up_pressed():
@@ -34,24 +32,12 @@ def button_green_pressed():
 	lcd.message('Button GREEN pressed')
 	sleep(1)
 
-def button_up_pressed_wait():
-	button_up_pressed = True
-
 if __name__ == "__main__":
 	
-	#button_up.when_pressed = button_up_pressed
-	#button_down.when_pressed = button_down_pressed
-	#button_red.when_pressed = button_red_pressed
-	#button_green.when_pressed = button_green_pressed
+	button_up.when_pressed = button_up_pressed
+	button_down.when_pressed = button_down_pressed
+	button_red.when_pressed = button_red_pressed
+	button_green.when_pressed = button_green_pressed
 	
-	button_up.when_pressed = button_up_pressed_wait
-
 	while True:
-		button_up.wait_for_press(.5)
-		print(button_up_pressed())
-		if button_up_pressed == True:
-			lcd.message('yeah')
-			sleep(.5)
-			lcd.clear()
-			button_up_pressed = False
-
+		pause()
