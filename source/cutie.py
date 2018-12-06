@@ -23,12 +23,18 @@ button_up = Button(17)
 init()
 
 def wait_for_button():
+    button_up_pressed = False
+    button_down_pressed = False
+    button_red_pressed = False
+    button_green_pressed = False
+
     button_up_pressed = button_up.wait_for_press(.05)
     button_down_pressed = button_down.wait_for_press(.05)
     button_red_pressed = button_red.wait_for_press(.05)
     button_green_pressed = button_green.wait_for_press(.05)
 
     if button_up_pressed:
+        print('a;lsfkjsa;lfkajsf')
         return 'up'
     elif button_down_pressed:
         return 'down'
