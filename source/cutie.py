@@ -14,47 +14,28 @@ from gpiozero import Button
 
 from signal import pause
 
-button_green = Button(2)
-button_red = Button(3)
+button_green = Button(3)
+button_red = Button(2)
 button_down = Button(4)
 button_up = Button(17)
 
-button_up_pressed = False
-button_down_pressed = False
-button_red_pressed = False
-button_green_pressed = False
-
-def button_up_signal():
-    button_up_pressed = True
-    button_down_pressed = False
-    button_red_pressed = False
-    button_green_pressed = False
-    print('button up pressed')
-
-def button_down_signal():
-    button_up_pressed = False
-    button_down_pressed = True
-    button_red_pressed = False
-    button_green_pressed = False
-
-def button_red_signal():
-    button_up_pressed = False
-    button_down_pressed = False
-    button_red_pressed = True
-    button_green_pressed = False
-
-def button_green_signal():
-    button_up_pressed = False
-    button_down_pressed = False
-    button_red_pressed = False
-    button_green_pressed = True
-
-button_up.when_released = button_up_signal
-button_down.when_released = button_down_signal
-button_red.when_pressed = button_red_signal
-button_green.when_pressed = button_green_signal
 
 init()
+
+def wait_for_button():
+    button_up_pressed = button_up.wait_for_button(.05)
+    button_down_pressed = button_down.wait_for_button(.05)
+    button_red_pressed = button_red.wait_for_button(.05)
+    button_green_pressed = button_green.wait_for_button(.05)
+
+    if button_up_pressed:
+        return 'up'
+    elif button_down_pressed:
+        return 'down'
+    elif button_green_pressed:
+        return 'green'
+    else:
+        return 'red'
 
 def get_number(
         prompt,                        # type: str
@@ -152,7 +133,6 @@ def select(
     while True:
         print('\033[{}A'.format(len(options) + 1))
         lcd.clear()
-        
 
         for i, option in enumerate(options):
             if i not in caption_indices:
@@ -167,11 +147,11 @@ def select(
                 lcd.message('{}{}'.format(caption_prefix, options[i]))
         #keypress = readchar.readkey()
         keypress = None
-        pause()
+        
+        button_pressed = wait_for_button()
 
         #if keypress == readchar.key.UP or button_up_pressed:
-        if button_up_pressed:
-            print('JESUS!')
+        if button_pressed == 'up':
             new_index = selected_index
             while new_index > 0:
                 new_index -= 1
@@ -179,8 +159,7 @@ def select(
                     selected_index = new_index
                     break
         #elif keypress == readchar.key.DOWN or button_down_pressed:
-        elif button_down_pressed:
-            print('CHRIST!')
+        elif button_pressed == 'down':
             new_index = selected_index
             while new_index < len(options) - 1:
                 new_index += 1
