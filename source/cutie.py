@@ -163,14 +163,14 @@ def select(
         keypress = None
         pause()
 
-        if keypress == readchar.key.UP or button_status['up']:
+        if keypress == readchar.key.UP or button_up_pressed:
             new_index = selected_index
             while new_index > 0:
                 new_index -= 1
                 if new_index not in caption_indices:
                     selected_index = new_index
                     break
-        elif keypress == readchar.key.DOWN or button_status['down']:
+        elif keypress == readchar.key.DOWN or button_down_pressed:
             new_index = selected_index
             while new_index < len(options) - 1:
                 new_index += 1
