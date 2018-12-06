@@ -155,12 +155,9 @@ def select(
         keypress = None
         
         button_pressed = None
-        
+
         while button_pressed is None:
             button_pressed = wait_for_button()
-
-        print(button_pressed)
-        sleep(1)
 
         #if keypress == readchar.key.UP or button_up_pressed:
         if button_pressed == 'up':
