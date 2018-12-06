@@ -35,8 +35,6 @@ def wait_for_button():
     button_green_pressed = button_green.wait_for_press(.05)
 
     if button_up_pressed:
-        print('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
-        sleep(1)
         return 'up'
     elif button_down_pressed:
         return 'down'
