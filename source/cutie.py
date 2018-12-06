@@ -161,7 +161,7 @@ def select(
                 lcd.message('{}{}'.format(caption_prefix, options[i]))
         #keypress = readchar.readkey()
         keypress = None
-        pause()
+        
 
         if keypress == readchar.key.UP or button_up_pressed:
             new_index = selected_index
