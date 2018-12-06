@@ -29,10 +29,10 @@ def wait_for_button():
     button_red_pressed = False
     button_green_pressed = False
 
-    button_up_pressed = button_up.wait_for_press(.05)
-    button_down_pressed = button_down.wait_for_press(.05)
-    button_red_pressed = button_red.wait_for_press(.05)
-    button_green_pressed = button_green.wait_for_press(.05)
+    button_up_pressed = button_up.wait_for_press(.01)
+    button_down_pressed = button_down.wait_for_press(.01)
+    button_red_pressed = button_red.wait_for_press(.01)
+    button_green_pressed = button_green.wait_for_press(.01)
 
     if button_up_pressed:
         return 'up'
