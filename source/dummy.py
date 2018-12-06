@@ -39,4 +39,5 @@ if __name__ == "__main__":
 	button_red.when_pressed = button_red_pressed
 	button_green.when_pressed = button_green_pressed
 	
-	pause()
+	while True:
+		pause()
