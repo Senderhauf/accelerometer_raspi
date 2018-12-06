@@ -154,7 +154,10 @@ def select(
         #keypress = readchar.readkey()
         keypress = None
         
-        button_pressed = wait_for_button()
+        button_pressed = None
+        
+        while button_pressed is None:
+            button_pressed = wait_for_button()
 
         print(button_pressed)
         sleep(1)
@@ -176,7 +179,6 @@ def select(
                     selected_index = new_index
                     break
         else:
-            button_pressed = None
             break
     return selected_index
 
