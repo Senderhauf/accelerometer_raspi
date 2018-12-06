@@ -48,9 +48,9 @@ if __name__ == "__main__":
 
 	while True:
 		button_up.wait_for_press(.5)
-		if button_up_pressed is True:
+		if this.button_up_pressed == True:
 			lcd.message('yeah')
 			sleep(.5)
 			lcd.clear()
-			button_up_pressed = False
+			this.button_up_pressed = False
 
