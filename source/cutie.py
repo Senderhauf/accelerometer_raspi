@@ -24,6 +24,30 @@ button_down_pressed = False
 button_red_pressed = False
 button_green_pressed = False
 
+def button_up_signal():
+    button_up_pressed = True
+    button_down_pressed = False
+    button_red_pressed = False
+    button_green_pressed = False
+
+def button_down_signal():
+    button_up_pressed = False
+    button_down_pressed = True
+    button_red_pressed = False
+    button_green_pressed = False
+
+def button_red_signal():
+    button_up_pressed = False
+    button_down_pressed = False
+    button_red_pressed = True
+    button_green_pressed = False
+
+def button_green_signal():
+    button_up_pressed = False
+    button_down_pressed = False
+    button_red_pressed = False
+    button_green_pressed = True
+
 button_up.when_pressed = button_up_signal
 button_down.when_pressed = button_down_signal
 button_red.when_pressed = button_red_signal
@@ -517,26 +541,3 @@ def get_number_arrows(
     return return_value
 
     
-def button_up_signal():
-    button_up_pressed = True
-    button_down_pressed = False
-    button_red_pressed = False
-    button_green_pressed = False
-
-def button_down_signal():
-    button_up_pressed = False
-    button_down_pressed = True
-    button_red_pressed = False
-    button_green_pressed = False
-
-def button_red_signal():
-    button_up_pressed = False
-    button_down_pressed = False
-    button_red_pressed = True
-    button_green_pressed = False
-
-def button_green_signal():
-    button_up_pressed = False
-    button_down_pressed = False
-    button_red_pressed = False
-    button_green_pressed = True
