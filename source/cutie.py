@@ -12,10 +12,22 @@ from Adafruit_CharLCD import Adafruit_CharLCD
 
 from gpiozero import Button
 
+from signal import pause
+
 button_green = Button(2)
 button_red = Button(3)
 button_down = Button(4)
 button_up = Button(17)
+
+button_up_pressed = False
+button_down_pressed = False
+button_red_pressed = False
+button_green_pressed = False
+
+button_up.when_pressed = button_up_signal
+button_down.when_pressed = button_down_signal
+button_red.when_pressed = button_red_signal
+button_green.when_pressed = button_green_signal
 
 init()
 
@@ -110,7 +122,7 @@ def select(
     while True:
         print('\033[{}A'.format(len(options) + 1))
         lcd.clear()
-        button_status = get_button_status()
+        
 
         for i, option in enumerate(options):
             if i not in caption_indices:
@@ -123,7 +135,10 @@ def select(
             elif i in caption_indices:
                 print('\033[K{}{}'.format(caption_prefix, options[i]))
                 lcd.message('{}{}'.format(caption_prefix, options[i]))
-        keypress = readchar.readkey()
+        #keypress = readchar.readkey()
+        keypress = None
+        pause()
+
         if keypress == readchar.key.UP or button_status['up']:
             new_index = selected_index
             while new_index > 0:
@@ -501,9 +516,27 @@ def get_number_arrows(
     print('\033[K\n\033[K\n\033[K\n\033[3A')
     return return_value
 
+    
+def button_up_signal():
+    button_up_pressed = True
+    button_down_pressed = False
+    button_red_pressed = False
+    button_green_pressed = False
 
-def get_button_status():
-    return {'up': button_up.is_pressed, 
-            'down': button_down.is_pressed, 
-            'green': button_green.is_pressed, 
-            'red': button_red.is_pressed}
+def button_down_signal():
+    button_up_pressed = False
+    button_down_pressed = True
+    button_red_pressed = False
+    button_green_pressed = False
+
+def button_red_signal():
+    button_up_pressed = False
+    button_down_pressed = False
+    button_red_pressed = True
+    button_green_pressed = False
+
+def button_green_signal():
+    button_up_pressed = False
+    button_down_pressed = False
+    button_red_pressed = False
+    button_green_pressed = True
