@@ -48,7 +48,7 @@ if __name__ == "__main__":
 
 	while True:
 		button_up.wait_for_press(.5)
-		print(button_up_pressed)
+		print(button_up_pressed())
 		if button_up_pressed == True:
 			lcd.message('yeah')
 			sleep(.5)
