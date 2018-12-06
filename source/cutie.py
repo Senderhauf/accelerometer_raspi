@@ -169,6 +169,7 @@ def select(
         pause()
 
         if keypress == readchar.key.UP or button_up_pressed:
+            print('Button up pressed')
             new_index = selected_index
             while new_index > 0:
                 new_index -= 1
