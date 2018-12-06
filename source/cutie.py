@@ -135,6 +135,11 @@ def select(
     Returns:
         int: The index that has been selected.
     """
+    button_up_pressed = False
+    button_down_pressed = False
+    button_red_pressed = False
+    button_green_pressed = False
+
     lcd = Adafruit_CharLCD()
     lcd.clear()
     lcd_deselected_prefix = '[ ]'
