@@ -29,6 +29,7 @@ def button_up_signal():
     button_down_pressed = False
     button_red_pressed = False
     button_green_pressed = False
+    print('button up pressed')
 
 def button_down_signal():
     button_up_pressed = False
