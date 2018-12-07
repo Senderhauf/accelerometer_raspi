@@ -527,7 +527,7 @@ def get_number_arrows(
         myLCD.clearLine(2)
         print('\033[3A\r\033[K'
             '{}{}{}'.format(prompt, max_min_prompt, current_value), end='')
-        lcd.message('{}{}{}'.format(prompt, max_min_prompt, current_value), 2)
+        lcd.message('{}{}{}'.format(prompt, max_min_prompt, current_value), line=2)
         sys.stdout.flush()
 
         #keypress = readchar.readkey()
