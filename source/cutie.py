@@ -9,6 +9,7 @@ from colorama import init
 import readchar
 
 from Adafruit_CharLCD import Adafruit_CharLCD
+import myLCD
 
 from gpiozero import Button
 
@@ -128,8 +129,8 @@ def select(
         int: The index that has been selected.
     """
 
-    lcd = Adafruit_CharLCD()
-    lcd.clear()
+    #lcd = Adafruit_CharLCD()
+    #lcd.clear()
     lcd_deselected_prefix = '[ ]'
     lcd_selected_prefix = '[x]'
 
@@ -138,19 +139,22 @@ def select(
         caption_indices = []
     while True:
         print('\033[{}A'.format(len(options) + 1))
-        lcd.clear()
+        #lcd.clear()
 
         for i, option in enumerate(options):
             if i not in caption_indices:
                 print('\033[K{}{}'.format(
                     selected_prefix if i == selected_index else
                     deselected_prefix, option))
-                lcd.message('{}{}\n'.format(
+                myLCD.printLine(i+1, '{}{}\n'.format(
+                #lcd.message('{}{}\n'.format(
                     lcd_selected_prefix if i == selected_index else
                     lcd_deselected_prefix, option))
             elif i in caption_indices:
                 print('\033[K{}{}'.format(caption_prefix, options[i]))
-                lcd.message('{}{}'.format(caption_prefix, options[i]))
+                #lcd.message('{}{}'.format(caption_prefix, options[i]))
+                myLCD.printLine(i+1, '{}{}'.format(caption_prefix, options[i]))
+
         #keypress = readchar.readkey()
         keypress = None
         
