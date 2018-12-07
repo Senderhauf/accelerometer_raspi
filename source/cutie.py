@@ -438,7 +438,7 @@ def prompt_min_or_hour(
     current_message = ''
     yn_prompt = ' ({}/{}): '.format(min_text[0], hour_text[0]) if char_prompt else ': '
     abort = False
-    lcd = Adafruit_CharLCD()
+    lcd = Adafruit_CharLCD.Adafruit_CharLCD()
     selected_prefix_lcd = '> '
     print()
 
@@ -513,7 +513,7 @@ def get_number_arrows(
     Returns:
         int: number entered by user
     """
-    lcd = Adafruit_CharLCD()
+    lcd = Adafruit_CharLCD.Adafruit_CharLCD()
     myLCD.clearLine(2)
     myLCD.clearLine(3)
 
