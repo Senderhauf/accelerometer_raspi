@@ -17,6 +17,8 @@ import time
 
 ## Raspberry libraries
 import RPi.GPIO as GPIO
+import sys
+sys.path.append('/home/pi/accelerometer_raspi/source/RPLCD')
 from RPLCD.gpio import CharLCD
 
 ## Shutdown management
