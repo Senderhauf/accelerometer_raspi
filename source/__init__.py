@@ -19,20 +19,20 @@ def main():
 	clearLine(3)
 
 	while True:
-        options = [
-            'RECORD DATA',
-            'TRANSFER DATA']    
+			options = [
+		    'RECORD DATA',
+		    'TRANSFER DATA']    
 
-        
-        selected_option = cutie.select(options, selected_index=0)
 
-        if selected_option == 0:
-            record_data()
-        elif selected_option == 1:
-            transfer_usb()
+		selected_option = cutie.select(options, selected_index=0)
 
-        # update lcd every 100 ms
-        updateLCD()
+		if selected_option == 0:
+		    record_data()
+		elif selected_option == 1:
+		    transfer_usb()
+
+		# update lcd every 100 ms
+		updateLCD()
 
 
 if __name__ == '__main__':
