@@ -26,9 +26,9 @@ def main():
 		selected_option = cutie.select(options, selected_index=0)
 
 		if selected_option == 0:
-		    record_data()
+			record_data()
 		elif selected_option == 1:
-		    transfer_usb()
+			transfer_usb()
 
 		# update lcd every 100 ms
 		updateLCD()
