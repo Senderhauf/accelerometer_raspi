@@ -240,9 +240,9 @@ class Adafruit_CharLCD(object):
             self.displaymode &= ~LCD_ENTRYSHIFTINCREMENT
         self.write8(LCD_ENTRYMODESET | self.displaymode)
 
-    def message(self, text):
+    def message(self, text, line=0):
         """Write text to display.  Note that text can include newlines."""
-        line = 0
+        line = line
         # Iterate through each character.
         for char in text:
             # Advance to next line if character is a new line.

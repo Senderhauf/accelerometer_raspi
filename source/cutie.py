@@ -133,14 +133,14 @@ def select(
     #lcd.clear()
     lcd_deselected_prefix = '[ ]'
     lcd_selected_prefix = '[x]'
-
+    myLCD.updateLCD()
     print('\n' * (len(options) - 1))
     if caption_indices is None:
         caption_indices = []
     while True:
         print('\033[{}A'.format(len(options) + 1))
         #lcd.clear()
-        myLCD.updateLCD(str2="SELECT OPTION")
+        myLCD.updateLCD(str2="SELECT OPTION: ")
         for i, option in enumerate(options):
             if i not in caption_indices:
                 print('\033[K{}{}'.format(
@@ -156,7 +156,7 @@ def select(
                 myLCD.printLine(i+2, '{}{}'.format(caption_prefix, options[i]))
 
         #keypress = readchar.readkey()
-        keypress = None
+        #keypress = None
         
         button_pressed = None
 
@@ -514,16 +514,20 @@ def get_number_arrows(
         int: number entered by user
     """
     lcd = Adafruit_CharLCD()
+    myLCD.clearLine(1)
+    myLCD.clearLine(2)
+    myLCD.clearLine(3)
+
     return_value = -1
     current_value = 0
     max_min_prompt = '({},{}): '.format(str(min_value), str(max_value-1))
 
     while return_value < min_value:
         print('\n')
-        lcd.clear()
+        #lcd.clear()
         print('\033[3A\r\033[K'
             '{}{}{}'.format(prompt, max_min_prompt, current_value), end='')
-        lcd.message('{}{}{}'.format(prompt, max_min_prompt, current_value))
+        lcd.message('{}{}{}'.format(prompt, max_min_prompt, current_value), 2)
         sys.stdout.flush()
 
         #keypress = readchar.readkey()
