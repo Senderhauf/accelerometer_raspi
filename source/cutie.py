@@ -524,10 +524,10 @@ def get_number_arrows(
     while return_value < min_value:
         print('\n')
         #lcd.clear()
-        myLCD.clearLine(2)
         print('\033[3A\r\033[K'
             '{}{}{}'.format(prompt, max_min_prompt, current_value), end='')
-        lcd.message('{}{}{}'.format(prompt, max_min_prompt, current_value), line=2)
+        myLCD.updateLCD(str3='{}{}{}'.format(prompt, max_min_prompt, current_value))
+        #lcd.message('{}{}{}'.format(prompt, max_min_prompt, current_value), line=2)
         sys.stdout.flush()
 
         #keypress = readchar.readkey()
