@@ -140,7 +140,7 @@ def select(
     while True:
         print('\033[{}A'.format(len(options) + 1))
         #lcd.clear()
-
+        myLCD.updateLCD(str2="SELECT OPTION")
         for i, option in enumerate(options):
             if i not in caption_indices:
                 print('\033[K{}{}'.format(
