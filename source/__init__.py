@@ -21,8 +21,7 @@ def main():
 	while True:
 			options = [
 		    'RECORD DATA',
-		    'TRANSFER DATA']    
-
+		    'TRANSFER DATA']
 
 		selected_option = cutie.select(options, selected_index=0)
 
