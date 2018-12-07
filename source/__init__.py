@@ -18,7 +18,7 @@ def main():
 	clearLine(2)
 	clearLine(3)
 
-    while True:
+	while True:
         options = [
             'RECORD DATA',
             'TRANSFER DATA']    
