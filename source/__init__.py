@@ -7,9 +7,6 @@ import myLCD
 import cutie
 
 def main():
-    """Main
-    """
-	
 	# Remove old shutdown file
 	try:
 		os.remove("/home/pi/accelerometer_raspi/source/shutdown")
