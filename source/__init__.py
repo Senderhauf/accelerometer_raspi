@@ -5,6 +5,7 @@ from transfer_usb import transfer_usb
 
 import myLCD
 import cutie
+import os
 
 def main():
 # Remove old shutdown file
