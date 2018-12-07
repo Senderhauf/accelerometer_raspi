@@ -122,10 +122,13 @@ def fourthString():
 	return str
 
 def updateLCD(str1=getTime(), str2="", str3="", str4=""):
-	printLine(0,firstString())
-        printLine(1,secondString())
-	printLine(2,thirdString())
-        printLine(3,fourthString())
+	printLine(0,str1)
+    if str2 != "":
+	    printLine(1,str2)
+	if str3 != "":	
+		printLine(2,str3)
+	if str4 != "":
+        printLine(3,str4)
 	#print "LCD update"	
 
 ## Shutdown management

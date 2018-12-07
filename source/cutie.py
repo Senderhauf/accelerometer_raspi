@@ -146,14 +146,16 @@ def select(
                 print('\033[K{}{}'.format(
                     selected_prefix if i == selected_index else
                     deselected_prefix, option))
-                myLCD.printLine(i+1, '{}{}\n'.format(
-                #lcd.message('{}{}\n'.format(
+                d = {'str{}'.format(i+1): '{}{}\n'.format(
                     lcd_selected_prefix if i == selected_index else
-                    lcd_deselected_prefix, option))
+                    lcd_deselected_prefix, option)}
+                myLCD.updateLCD(**d)
+                #lcd.message('{}{}\n'.format(
             elif i in caption_indices:
                 print('\033[K{}{}'.format(caption_prefix, options[i]))
                 #lcd.message('{}{}'.format(caption_prefix, options[i]))
-                myLCD.printLine(i+1, '{}{}'.format(caption_prefix, options[i]))
+                d = {'str{}'.format(i+1): '{}{}'.format(caption_prefix, options[i])}
+                myLCD.updateLCD(**d)
 
         #keypress = readchar.readkey()
         keypress = None
