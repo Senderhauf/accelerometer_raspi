@@ -13,9 +13,9 @@ def main():
 		os.remove("/home/pi/accelerometer_raspi/source/shutdown")
 	except (OSError):
 		pass
-	updateLCD(str2="WELCOME", str3="REXNORD EDGE DEVICE")
-	clearLine(2)
-	clearLine(3)
+	myLCD.updateLCD(str2="WELCOME", str3="REXNORD EDGE DEVICE")
+	myLCD.clearLine(2)
+	myLCD.clearLine(3)
 	while True:
 		options = [
 			'RECORD DATA',
@@ -28,7 +28,7 @@ def main():
 			transfer_usb()
 
 		# update lcd every 100 ms
-		updateLCD()
+		myLCD.updateLCD()
 
 
 if __name__ == '__main__':
