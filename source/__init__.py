@@ -7,22 +7,18 @@ import myLCD
 import cutie
 
 def main():
-	# Remove old shutdown file
+# Remove old shutdown file
 	try:
 		os.remove("/home/pi/accelerometer_raspi/source/shutdown")
 	except (OSError):
 		pass
-
-
 	updateLCD(str2="WELCOME", str3="REXNORD EDGE DEVICE")
 	clearLine(2)
 	clearLine(3)
-
 	while True:
-			options = [
-		    'RECORD DATA',
-		    'TRANSFER DATA']
-
+		options = [
+			'RECORD DATA',
+			'TRANSFER DATA']
 		selected_option = cutie.select(options, selected_index=0)
 
 		if selected_option == 0:
@@ -35,7 +31,7 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+main()
 
 
 
