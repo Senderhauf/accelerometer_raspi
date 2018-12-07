@@ -7,10 +7,11 @@ import cutie
 import os
 import signal
 import subprocess
+import myLCD
 
 def record_data():
     lcd = Adafruit_CharLCD()
-    lcd.clear()
+    #lcd.clear()
 
     hours = 0
     minutes = 0
@@ -23,8 +24,9 @@ def record_data():
     	return
 
     if minutes+hours == 0:
-    	lcd.clear()
-    	lcd.message('NO TIME ENTERED')
+    	#lcd.clear()
+    	#lcd.message('NO TIME ENTERED')
+        myLCD.updateLCD(str2 = 'NO TIME ENTERED')
     	print('NO TIME ENTERED')
     	sleep(1)
     	return
@@ -34,8 +36,9 @@ def record_data():
     # check if sensor is attached via /dev/ttyUSB0
     sensor_connected = os.path.exists('/dev/ttyUSB0')
     while not sensor_connected:
-        lcd.clear()
-        lcd.message('NO SENSOR FOUND')
+        #lcd.clear()
+        #lcd.message('NO SENSOR FOUND')
+        myLCD.updateLCD(str2 = 'NO SENSOR FOUND')
         print('NO SENSOR FOUND')
         sleep(1)
         options = ['CONNECT SENSOR', 'BACK']
@@ -44,15 +47,17 @@ def record_data():
             return # back to main menu
         sensor_connected = os.path.exists('/dev/ttyUSB0')
 
-    lcd.clear()
-    lcd.message('ENTER TO START')
-    raw_input('ENTER TO START')
+    #lcd.clear()
+    #lcd.message('ENTER TO START')
+    myLCD.updateLCD(str2='ENTER TO START')
+    #raw_input('ENTER TO START')
 
     curTime = time()
     finish = datetime.datetime.fromtimestamp(endTime)
 
-    lcd.clear()
-    lcd.message('FINISH: {:02d}:{:02d}\nRECORDING...'.format(finish.hour, finish.minute))
+    #lcd.clear()
+    #lcd.message('FINISH: {:02d}:{:02d}\nRECORDING...'.format(finish.hour, finish.minute))
+    myLCD.updateLCD(str2='FINISH: {:02d}:{:02d}\nRECORDING...'.format(finish.hour, finish.minute))
     print('FINISH: {:02d}:{:02d}\nRECORDING...'.format(finish.hour, finish.minute))
  
     # excute following script: java -jar ~/BannerQM42TestApplication.jar -config 1000RPM-5Hz_1Device.JSON -logfile test.csv -port /dev/ttyUSB0
@@ -72,6 +77,7 @@ def record_data():
 
     os.chdir('/home/pi/accelerometer_raspi/source')
 
-    lcd.message('\nDONE')
+    #lcd.message('\nDONE')
+    myLCD.updateLCD(str2='DONE')
     print('DONE')
 
