@@ -8,7 +8,7 @@ import getpass
 from colorama import init
 import readchar
 
-from Adafruit_CharLCD import Adafruit_CharLCD
+import Adafruit_CharLCD
 import myLCD
 
 from gpiozero import Button
@@ -514,7 +514,6 @@ def get_number_arrows(
         int: number entered by user
     """
     lcd = Adafruit_CharLCD()
-    myLCD.clearLine(1)
     myLCD.clearLine(2)
     myLCD.clearLine(3)
 
@@ -525,6 +524,7 @@ def get_number_arrows(
     while return_value < min_value:
         print('\n')
         #lcd.clear()
+        myLCD.clearLine(2)
         print('\033[3A\r\033[K'
             '{}{}{}'.format(prompt, max_min_prompt, current_value), end='')
         lcd.message('{}{}{}'.format(prompt, max_min_prompt, current_value), 2)
