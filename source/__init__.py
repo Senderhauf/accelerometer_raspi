@@ -6,6 +6,7 @@ from transfer_usb import transfer_usb
 import myLCD
 import cutie
 import os
+from time import sleep
 
 def main():
 # Remove old shutdown file
@@ -14,8 +15,10 @@ def main():
 	except (OSError):
 		pass
 	myLCD.updateLCD(str2="WELCOME", str3="REXNORD EDGE DEVICE")
+	sleep(3)
 	myLCD.clearLine(2)
 	myLCD.clearLine(3)
+
 	while True:
 		options = [
 			'RECORD DATA',
