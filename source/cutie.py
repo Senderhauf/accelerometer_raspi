@@ -154,8 +154,6 @@ def select(
 
         for i, option in enumerate(options):
 
-            if(selected_index >= 3):
-
             if i not in caption_indices:
                 print('\033[K{}{}'.format(
                     selected_prefix if i == selected_index else
