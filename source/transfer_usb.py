@@ -53,7 +53,7 @@ def transfer_usb():
 	count = 1
 	for file in csv_files:
 		strs = file.split('_')
-		tmp = count+'. '+strs[1]+' '+strs[2]
+		tmp = str(count)+'. '+strs[1]+' '+strs[2]
 		#tmp = tmp[:tmp.rfind(':')]
 		csv_files_lcd.append(tmp)
 		count += 1
