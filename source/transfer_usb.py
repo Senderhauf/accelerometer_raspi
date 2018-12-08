@@ -67,13 +67,17 @@ def transfer_usb():
 	#shutil.copy(selected_csv, '/media/usb'+selected_csv)
 
 	# hacky workaround using bash executed in python 
-	cmd = 'sudo chmod 777 /media/usb'
+	cmd = 'sudo chmod 777 /media/usb/'
 	subprocess.check_output(cmd.split())
 
 	selected_csv_file = selected_csv.split('/')[-1]
 	selected_csv_file = selected_csv_file.replace(' ', '')
+	selected_csv_file[selected_csv_file.find(':')] = 'h'
+	selected_csv_file[selected_csv_file.find(':')] = 'm'
+	indexSecAbrv = selected_csv_file.find('.csv')
+	selected_csv_file = selected_csv_file[:indexSecAbrv]+'s'+selected_csv_file[indexSecAbrv:]
 
-	cmd = 'sudo touch \'/media/usb/{}\''.format(selected_csv_file)
+	cmd = 'sudo touch /media/usb/{}'.format(selected_csv_file)
 	print(cmd)
 	#subprocess.check_output(cmd.split())
 
