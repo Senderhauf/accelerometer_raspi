@@ -1,12 +1,28 @@
+#!/usr/bin/python
 
 from record_data import record_data
 from transfer_usb import transfer_usb
-#from Adafruit_CharLCD import Adafruit_CharLCD
-
 import myLCD
 import cutie
 import os
-from time import sleep
+import schedule
+from time import sleep, strftime
+
+def getTime():
+	"Gets the current time and date and returns as a string"
+	time=strftime("%A %Y-%m-%d %H:%M:%S")
+	return time
+
+def select_option():
+	options = [
+		'RECORD DATA',
+		'TRANSFER DATA']
+	selected_option = cutie.select(options, selected_index=0)
+
+	if selected_option == 0:
+		record_data()
+	elif selected_option == 1:
+		transfer_usb()
 
 def main():
 # Remove old shutdown file
@@ -14,21 +30,17 @@ def main():
 		os.remove("/home/pi/accelerometer_raspi/source/shutdown")
 	except (OSError):
 		pass
+	
 	myLCD.updateLCD(str2="WELCOME", str3="REXNORD EDGE DEVICE")
 	sleep(2)
+
 	myLCD.clearLine(2)
 	myLCD.clearLine(3)
 
-	while True:
-		options = [
-			'RECORD DATA',
-			'TRANSFER DATA']
-		selected_option = cutie.select(options, selected_index=0)
+	schedule.every(.1).seconds().do(myLCD.printLine(0, getTime()))
 
-		if selected_option == 0:
-			record_data()
-		elif selected_option == 1:
-			transfer_usb()
+	while True:
+		selected_option()
 
 		# update lcd every 100 ms
 		myLCD.updateLCD()
@@ -36,8 +48,6 @@ def main():
 
 if __name__ == '__main__':
 	main()
-
-
 
 
 '''
