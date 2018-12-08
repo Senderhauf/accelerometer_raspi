@@ -14,7 +14,7 @@ import myLCD
 from gpiozero import Button
 
 from signal import pause
-from time import sleep
+from time import sleep, strftime
 
 button_green = Button(3)
 button_red = Button(2)
