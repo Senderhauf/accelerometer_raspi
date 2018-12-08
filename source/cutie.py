@@ -560,5 +560,5 @@ def get_number_arrows(
     
 def getTime():
     "Gets the current time and date and sets the LCDs 1st row"
-    t=strftime("%A %Y-%m-%d %H:%M:%S")
-    myLCD.printLine(0, t)
+    t=strftime("%A %Y-%m-%d %H:%M")
+    myLCD.printLine(0, '{0: 40>}'.format(t))
