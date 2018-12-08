@@ -80,7 +80,6 @@ def transfer_usb():
 	selected_csv_file = selected_csv_file[:indexSecAbrv]+'s'+selected_csv_file[indexSecAbrv:]
 
 	cmd = 'sudo touch /media/usb/{}'.format(selected_csv_file)
-	print(cmd)
 	#subprocess.check_output(cmd.split())
 
 	cmd = 'sudo cp {} /media/usb/{}'.format(selected_csv, selected_csv_file)
