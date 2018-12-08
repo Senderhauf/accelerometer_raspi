@@ -516,7 +516,7 @@ def get_number_arrows(
         int: number entered by user
     """
     #lcd = Adafruit_CharLCD.Adafruit_CharLCD()
-    myLCD.updateLCD(str2=" ", str3=" ", str4=" ")
+    myLCD.updateLCD()
 
     return_value = -1
     current_value = 0
@@ -536,6 +536,7 @@ def get_number_arrows(
         button_pressed = None
 
         while button_pressed is None:
+            myLCD.getTime()
             button_pressed = wait_for_button()
 
         #if keypress in [readchar.key.DOWN]:
