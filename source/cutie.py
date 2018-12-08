@@ -516,7 +516,7 @@ def get_number_arrows(
         int: number entered by user
     """
     #lcd = Adafruit_CharLCD.Adafruit_CharLCD()
-    myLCD.updateLCD()
+    myLCD.clear_all()
 
     return_value = -1
     current_value = 0
@@ -527,7 +527,7 @@ def get_number_arrows(
         #lcd.clear()
         print('\033[3A\r\033[K'
             '{}{}{}'.format(prompt, max_min_prompt, current_value), end='')
-        myLCD.updateLCD(str3='{}{}{}'.format(prompt, max_min_prompt, current_value))
+        myLCD.printLine(2, '{}{}{}'.format(prompt, max_min_prompt, current_value))
         #lcd.message('{}{}{}'.format(prompt, max_min_prompt, current_value), line=2)
         #sys.stdout.flush()
 
