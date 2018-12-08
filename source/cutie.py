@@ -158,6 +158,7 @@ def select(
 
         #keypress = readchar.readkey()
         #keypress = None
+        getTime()
         
         button_pressed = None
 
@@ -559,5 +560,5 @@ def get_number_arrows(
     
 def getTime():
     "Gets the current time and date and sets the LCDs 1st row"
-    time=strftime("%A %Y-%m-%d %H:%M:%S")
-    myLCD.printLine(0, time)
+    t=strftime("%A %Y-%m-%d %H:%M:%S")
+    myLCD.printLine(0, t)
