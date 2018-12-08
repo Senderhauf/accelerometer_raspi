@@ -138,22 +138,39 @@ def select(
     print('\n' * (len(options) - 1))
     if caption_indices is None:
         caption_indices = []
+
+
+    '''
+        Get selected index 
+        if there are at least two options above the selected index 
+            show only two options above and the one selected
+        else 
+            print items as before
+    '''
+
     while True:
         getTime()
         print('\033[{}A'.format(len(options) + 1))
-        #lcd.clear()
+
         for i, option in enumerate(options):
+
+            if(selected_index >= 3):
+
             if i not in caption_indices:
                 print('\033[K{}{}'.format(
                     selected_prefix if i == selected_index else
                     deselected_prefix, option))
-                myLCD.printLine(i+1, '{}{}\n'.format(
-                #lcd.message('{}{}\n'.format(
-                    lcd_selected_prefix if i == selected_index else
-                    lcd_deselected_prefix, option))
+                # if the selected index is at least 
+                if (selected_index > 2 and i < selected_index and i > selected_index-3):
+                    myLCD.printLine(i+1, '{}{}\n'.format(
+                        lcd_selected_prefix if i == selected_index else
+                        lcd_deselected_prefix, option))
+                elif (i < 3):
+                    myLCD.printLine(i+1, '{}{}\n'.format(
+                        lcd_selected_prefix if i == selected_index else
+                        lcd_deselected_prefix, option))
             elif i in caption_indices:
-                print('\033[K{}{}'.format(caption_prefix, options[i]))
-                #lcd.message('{}{}'.format(caption_prefix, options[i]))
+                #print('\033[K{}{}'.format(caption_prefix, options[i]))
                 myLCD.printLine(i+1, '{}{}'.format(caption_prefix, options[i]))
 
         #keypress = readchar.readkey()
