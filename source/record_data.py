@@ -16,11 +16,12 @@ def record_data():
     hours = 0
     minutes = 0
 
+    myLCD.clear_all()
     myLCD.printLine(1, 'ENTER DURATION:')
-    hours = cutie.get_number_arrows('  HOURS', 1, 13, 0)
+    hours = cutie.get_number_arrows('HOURS', 1, 13, 0)
     if hours == -1:
     	return
-    minutes = cutie.get_number_arrows('  MIN', 1, 60, 0)
+    minutes = cutie.get_number_arrows('MIN', 1, 60, 0)
     if minutes == -1:
     	return
 
