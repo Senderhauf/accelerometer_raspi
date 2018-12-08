@@ -10,16 +10,17 @@ import subprocess
 import myLCD
 
 def record_data():
-    #lcd = Adafruit_CharLCD()
-    #lcd.clear()
+    # lcd = Adafruit_CharLCD()
+    # lcd.clear()
 
     hours = 0
     minutes = 0
 
-    hours = cutie.get_number_arrows('HOURS', 1, 13, 0)
+    myLCD.printLine(1, 'ENTER DURATION:')
+    hours = cutie.get_number_arrows('  HOURS', 1, 13, 0)
     if hours == -1:
     	return
-    minutes = cutie.get_number_arrows('MIN', 1, 60, 0)
+    minutes = cutie.get_number_arrows('  MIN', 1, 60, 0)
     if minutes == -1:
     	return
 
@@ -47,16 +48,22 @@ def record_data():
             return # back to main menu
         sensor_connected = os.path.exists('/dev/ttyUSB0')
 
-    #lcd.clear()
-    #lcd.message('ENTER TO START')
     myLCD.updateLCD(str2='ENTER TO START')
-    #raw_input('ENTER TO START')
+    button_pressed = None
+    while button_pressed != 'green' or button_pressed != 'red':
+        getTime()
+        button_pressed = myLCD.wait_for_button()
+    if button_pressed == 'green':
+        continue
+    elif button_pressed == 'red':
+        myLCD.updateLCD(str2='CANCELING...')
+        sleep(1)
+        return
 
+    # calculate the finish time after the user confirms the start 
     curTime = time()
     finish = datetime.datetime.fromtimestamp(endTime)
 
-    #lcd.clear()
-    #lcd.message('FINISH: {:02d}:{:02d}\nRECORDING...'.format(finish.hour, finish.minute))
     myLCD.printLine(2, 'RECORDING...')
     myLCD.updateLCD(str4='FINISH: {:02d}:{:02d}'.format(finish.hour, finish.minute))
     print('FINISH: {:02d}:{:02d}\nRECORDING...'.format(finish.hour, finish.minute))
@@ -72,6 +79,7 @@ def record_data():
 
     while True:
         myLCD.getTime()
+        button_pressed = myLCD.wait_for_button()
         if(time() >= endTime):
             break
 
