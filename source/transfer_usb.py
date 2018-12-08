@@ -37,6 +37,7 @@ def transfer_usb():
 		# mount should iterate through all file system types in /proc/filesystems but fails itermittently
 	    for mount_type in mount_types:
 		    bash_mount_cmd = 'sudo mount -t {} /dev/{} /media/usb/'.format( mount_type, usb.keys()[0])
+		    print(bash_mount_cmd)
 		    subprocess.Popen(bash_mount_cmd.split())
 
 	hashfile = find_file('hash.key', '/media/usb/')
