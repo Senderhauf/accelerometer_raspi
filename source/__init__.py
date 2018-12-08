@@ -41,10 +41,7 @@ def main():
 	schedule.every(.1).seconds.do(getTime)
 
 	while True:
-		selected_option()
-
-		# update lcd every 100 ms
-		myLCD.updateLCD()
+		select_option()
 
 
 if __name__ == '__main__':
