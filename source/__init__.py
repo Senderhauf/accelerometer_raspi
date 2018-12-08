@@ -17,13 +17,15 @@ def getTime():
 def select_option():
 	options = [
 		'RECORD DATA',
-		'TRANSFER DATA']
+		'TRANSFER DATA', 
+		'SYSTEM FUNCTIONS']
 	selected_option = cutie.select(options, selected_index=0)
 
 	if selected_option == 0:
 		record_data()
 	elif selected_option == 1:
 		transfer_usb()
+	
 
 def main():
 # Remove old shutdown file
