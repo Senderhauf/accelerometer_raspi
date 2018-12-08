@@ -41,6 +41,9 @@ def main():
 	schedule.every(.1).seconds.do(getTime)
 
 	while True:
+		Schedule.run_pending()
+		time.sleep(0.01)
+		# check if shutting down
 		select_option()
 
 
