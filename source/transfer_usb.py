@@ -73,7 +73,7 @@ def transfer_usb():
 	selected_csv_file = selected_csv.split('/')[-1]
 	selected_csv_file = selected_csv_file.replace(' ', '')
 
-	cmd = 'sudo touch /media/usb/{}'.format(selected_csv_file)
+	cmd = 'sudo touch \'/media/usb/{}\''.format(selected_csv_file)
 	print(cmd)
 	#subprocess.check_output(cmd.split())
 
