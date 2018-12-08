@@ -28,7 +28,7 @@ def main():
 	except (OSError):
 		pass
 	
-	myLCD.updateLCD(str1=cutie.getTime(), str2="WELCOME", str3="REXNORD EDGE DEVICE")
+	myLCD.updateLCD(str2="WELCOME", str3="REXNORD EDGE DEVICE")
 	sleep(2)
 
 	myLCD.clearLine(2)
