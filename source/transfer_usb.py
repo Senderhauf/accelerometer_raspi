@@ -8,19 +8,17 @@ import subprocess
 from os.path import expanduser
 import shutil
 from time import sleep
-
+import myLCD
 
 def transfer_usb():
 
-	lcd = Adafruit_CharLCD()
-	lcd.clear()
+	myLCD.clear_all()
 
 	#find usb and confirm hash
 	usb = get_usb_devices()
 
 	while len(usb) == 0:
-		lcd.clear()
-		lcd.message('NO USB CONNECTED')
+		myLCD.printLine(1, 'NO USB CONNECTED')
 		print('NO USB CONNECTED')
 		sleep(1)
 		options = ['CONNECT USB', 'BACK']
@@ -40,8 +38,7 @@ def transfer_usb():
 
 	if hashfile is None:
 		print('INVALID USB')
-		lcd.clear()
-		lcd.message('INVALID USB')
+		myLCD.printLine(1, 'INVALID USB')
 		sleep(1)
 		return # back to main menu
 
@@ -57,19 +54,16 @@ def transfer_usb():
 		csv_files_lcd.append(tmp)
 
 	#transfer selected file to usb
-	
+	myLCD.clear_all()
 	selected_csv = csv_files[cutie.select(csv_files_lcd, selected_index=0)]
 	print('SELECTED CSV: '+ selected_csv)
 
-	lcd.clear()
-	lcd.message('COPYING FILE\nDONT UNPLUG USB')
+	myLCD.updateLCD(str2='COPYING FILE', str3='DO NOT UNPLUG USB')
 	#shutil.copy(selected_csv, '/media/usb'+selected_csv)
 
 	# hacky workaround using bash executed in python 
 	cmd = 'sudo chmod 777 /media/usb'
 	subprocess.check_output(cmd.split())
-
-	print('DEBUG 1')
 
 	selected_csv_file = selected_csv.split('/')[-1]
 	selected_csv_file = selected_csv_file.replace(' ', '')
@@ -77,20 +71,15 @@ def transfer_usb():
 	cmd = 'touch /media/usb/{}'.format(selected_csv_file)
 	#subprocess.check_output(cmd.split())
 
-	print('DEBUG 2')
-
 	cmd = 'sudo cp {} /media/usb/{}'.format(selected_csv, selected_csv_file)
 	cmd = cmd.split()
 	cmd = cmd[:2] + [cmd[2]+' '+cmd[3]] + cmd[4:]
 	subprocess.check_output(cmd)
 
-	print('DEBUG 3')
-
 	sleep(1)
 
 	#done
-	lcd.clear()
-	lcd.message('DONE')
+	myLCD.updateLCD(str2='TRANSFER COMPLETE')
 	print('DONE')
 	sleep(1)
 	return
