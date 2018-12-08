@@ -36,6 +36,7 @@ def transfer_usb():
 	    print(bash_mount_cmd)
 	    subprocess.check_output(bash_mount_cmd.split())
 
+	sleep(1)
 	hashfile = find_file('hash.key', '/media/usb/')
 
 	if hashfile is None:
