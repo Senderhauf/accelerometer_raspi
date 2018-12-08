@@ -516,7 +516,6 @@ def get_number_arrows(
         int: number entered by user
     """
     #lcd = Adafruit_CharLCD.Adafruit_CharLCD()
-    myLCD.clear_all()
 
     return_value = -1
     current_value = 0
