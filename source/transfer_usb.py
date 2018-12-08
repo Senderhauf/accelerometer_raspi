@@ -30,15 +30,11 @@ def transfer_usb():
 
 	# mount usb device if necessary
 	usb_mount_pt = get_mount_points()
-
-	mount_types = ['ext3', 'ext2', 'ext4', 'vfat']
-
 	if len(usb_mount_pt) == 0:
 		# mount should iterate through all file system types in /proc/filesystems but fails itermittently
-	    for mount_type in mount_types:
-		    bash_mount_cmd = 'sudo mount -t {} /dev/{} /media/usb/'.format( mount_type, usb.keys()[0])
-		    print(bash_mount_cmd)
-		    subprocess.Popen(bash_mount_cmd.split())
+	    bash_mount_cmd = 'sudo mount /dev/{}1 /media/usb/'.format(usb.keys()[0])
+	    print(bash_mount_cmd)
+	    subprocess.Popen(bash_mount_cmd.split())
 
 	hashfile = find_file('hash.key', '/media/usb/')
 
