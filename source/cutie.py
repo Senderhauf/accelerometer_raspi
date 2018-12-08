@@ -161,7 +161,13 @@ def select(
                 # if the selected index is at least 
                 if (selected_index > 2 and i < selected_index and i > selected_index-3):
                     print('i: {}, selected_index: {}'.format(i, selected_index))
-                    myLCD.printLine(i+1, '{}{}\n'.format(
+                    if (selected_index-i == 2):
+                        lineNum = 0
+                    elif (selected_index-i == 1):
+                        lineNum = 1
+                    else:
+                        lineNum = 2
+                    myLCD.printLine(lineNum, '{}{}\n'.format(
                         lcd_selected_prefix if i == selected_index else
                         lcd_deselected_prefix, option))
                 elif (i < 3):
