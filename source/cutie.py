@@ -159,7 +159,7 @@ def select(
                     #selected_prefix if i == selected_index else
                     #deselected_prefix, option))
                 # if the selected index is at least 
-                if (selected_index > 2 and i < selected_index and i > selected_index-3):
+                if (selected_index > 2 and i <= selected_index and i > selected_index-3):
                     print('i: {}, selected_index: {}'.format(i, selected_index))
                     if (selected_index-i == 2):
                         lineNum = 1
