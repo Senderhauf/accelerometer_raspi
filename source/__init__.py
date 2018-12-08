@@ -8,12 +8,6 @@ import os
 import schedule
 from time import sleep, strftime
 
-def getTime():
-	"Gets the current time and date and sets the LCDs 1st row"
-	time=strftime("%A %Y-%m-%d %H:%M:%S")
-	myLCD.printLine(0, time)
-
-
 def select_option():
 	options = [
 		'RECORD DATA',
@@ -25,7 +19,7 @@ def select_option():
 		record_data()
 	elif selected_option == 1:
 		transfer_usb()
-	
+
 
 def main():
 # Remove old shutdown file
@@ -34,20 +28,15 @@ def main():
 	except (OSError):
 		pass
 	
-	myLCD.updateLCD(str2="WELCOME", str3="REXNORD EDGE DEVICE")
+	myLCD.updateLCD(str1=cutie.getTime(), str2="WELCOME", str3="REXNORD EDGE DEVICE")
 	sleep(2)
 
 	myLCD.clearLine(2)
 	myLCD.clearLine(3)
 
-	schedule.every(1).seconds.do(getTime)
-
 	while True:
-		schedule.run_pending()
-		sleep(0.01)
-		# check if shutting down
 		select_option()
-
+		cutie.getTime()
 
 if __name__ == '__main__':
 	main()
