@@ -150,7 +150,7 @@ def select(
 
     while True:
         getTime()
-        print('\033[{}A'.format(len(options) + 1))
+        #print('\033[{}A'.format(len(options) + 1))
 
         for i, option in enumerate(options):
 
