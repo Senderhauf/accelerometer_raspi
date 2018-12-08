@@ -10,6 +10,7 @@ import readchar
 
 import Adafruit_CharLCD
 import myLCD
+from myLCD import getTime
 
 from gpiozero import Button
 
@@ -556,9 +557,3 @@ def get_number_arrows(
     print('\033[K\n\033[K\n\033[K\n\033[3A')
     return return_value
 
-    
-def getTime():
-    "Gets the current time and date and sets the LCDs 1st row"
-    t=strftime("%A %Y-%m-%d %H:%M")
-    myLCD.printLine(0, t.rjust(40))
-    return t.rjust(40)

@@ -44,7 +44,7 @@ GPIO_PIN_D7 = 11
 LCD_COLUMNS = 40
 LCD_ROWS = 2
 LCD_DOT_SIZE = 8
-
+	
 LCD_BRIGHTNESS = 0 # to be used with PWM for control of the LCD brightness.
 
 ### Initialize the LCD
@@ -57,9 +57,10 @@ i = 0
 
 ### Functions for getting time
 def getTime():
-	"Gets the current time and date and returns as a string"
-	time=strftime("%A %Y-%m-%d %H:%M:%S")
-	return time
+    "Gets the current time and date and sets the LCDs 1st row"
+    t=strftime("%A %Y-%m-%d %H:%M")
+    printLine(0, t.rjust(40))
+    return t.rjust(40)
 
 
 def getPercent(now,then):
@@ -141,5 +142,10 @@ def shutdown_message():
 	# Terminate LCD program
 	quit()
 	
-
+def clear_all(top=False):
+	if top:
+		clearLine(0)
+	clearLine(1)
+	clearLine(2)
+	clearLine(3)
 	

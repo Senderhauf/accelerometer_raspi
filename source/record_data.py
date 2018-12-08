@@ -57,7 +57,8 @@ def record_data():
 
     #lcd.clear()
     #lcd.message('FINISH: {:02d}:{:02d}\nRECORDING...'.format(finish.hour, finish.minute))
-    myLCD.updateLCD(str2='FINISH: {:02d}:{:02d}\nRECORDING...'.format(finish.hour, finish.minute))
+    myLCD.printLine(2, 'RECORDING...')
+    myLCD.updateLCD(str4='FINISH: {:02d}:{:02d}'.format(finish.hour, finish.minute))
     print('FINISH: {:02d}:{:02d}\nRECORDING...'.format(finish.hour, finish.minute))
  
     # excute following script: java -jar ~/BannerQM42TestApplication.jar -config 1000RPM-5Hz_1Device.JSON -logfile test.csv -port /dev/ttyUSB0
@@ -70,6 +71,7 @@ def record_data():
     pro = subprocess.Popen(cmd.split(), stdout=subprocess.PIPE, preexec_fn=os.setsid)
 
     while True:
+        myLCD.getTime()
         if(time() >= endTime):
             break
 
