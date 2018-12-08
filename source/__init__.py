@@ -42,7 +42,7 @@ def main():
 
 	while True:
 		schedule.run_pending()
-		time.sleep(0.01)
+		sleep(0.01)
 		# check if shutting down
 		select_option()
 
