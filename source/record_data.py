@@ -10,7 +10,7 @@ import subprocess
 import myLCD
 
 def record_data():
-    lcd = Adafruit_CharLCD()
+    #lcd = Adafruit_CharLCD()
     #lcd.clear()
 
     hours = 0

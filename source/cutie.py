@@ -529,14 +529,14 @@ def get_number_arrows(
             '{}{}{}'.format(prompt, max_min_prompt, current_value), end='')
         myLCD.updateLCD(str3='{}{}{}'.format(prompt, max_min_prompt, current_value))
         #lcd.message('{}{}{}'.format(prompt, max_min_prompt, current_value), line=2)
-        sys.stdout.flush()
+        #sys.stdout.flush()
 
         #keypress = readchar.readkey()
 
         button_pressed = None
 
         while button_pressed is None:
-            myLCD.getTime()
+            getTime()
             button_pressed = wait_for_button()
 
         #if keypress in [readchar.key.DOWN]:
