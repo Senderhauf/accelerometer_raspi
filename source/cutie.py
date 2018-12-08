@@ -158,11 +158,11 @@ def select(
 
         #keypress = readchar.readkey()
         #keypress = None
-        getTime()
-        
+
         button_pressed = None
 
         while button_pressed is None:
+            getTime()
             button_pressed = wait_for_button()
 
         #if keypress == readchar.key.UP or button_up_pressed:
