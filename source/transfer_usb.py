@@ -30,6 +30,7 @@ def transfer_usb():
 
 	# mount usb device if necessary
 	usb_mount_pt = get_mount_points()
+	print(usb_mount_pt)
 	if len(usb_mount_pt) == 0:
 	    bash_mount_cmd = 'sudo mount /dev/{} /media/usb/'.format(usb.keys()[0])
 	    print(bash_mount_cmd)
