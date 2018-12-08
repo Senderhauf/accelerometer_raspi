@@ -37,7 +37,7 @@ def main():
 	myLCD.clearLine(2)
 	myLCD.clearLine(3)
 
-	schedule.every(.1).seconds().do(myLCD.printLine(0, getTime()))
+	schedule.every(.1).seconds.do(myLCD.printLine(0, getTime()))
 
 	while True:
 		selected_option()
