@@ -72,8 +72,10 @@ def transfer_usb():
 
 	selected_csv_file = selected_csv.split('/')[-1]
 	selected_csv_file = selected_csv_file.replace(' ', '')
-	selected_csv_file[selected_csv_file.find(':')] = 'h'
-	selected_csv_file[selected_csv_file.find(':')] = 'm'
+	indexColon = selected_csv_file.find(':')
+	selected_csv_file = selected_csv_file[:indexColon]+'h'+selected_csv_file[indexColon+1]
+	indexColon = selected_csv_file.find(':')
+	selected_csv_file = selected_csv_file[:indexColon]+'m'+selected_csv_file[indexColon+1]
 	indexSecAbrv = selected_csv_file.find('.csv')
 	selected_csv_file = selected_csv_file[:indexSecAbrv]+'s'+selected_csv_file[indexSecAbrv:]
 
