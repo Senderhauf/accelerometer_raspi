@@ -138,6 +138,7 @@ def select(
     if caption_indices is None:
         caption_indices = []
     while True:
+        getTime()
         print('\033[{}A'.format(len(options) + 1))
         #lcd.clear()
         myLCD.updateLCD(str2="SELECT OPTION: ")
@@ -556,3 +557,7 @@ def get_number_arrows(
     return return_value
 
     
+def getTime():
+    "Gets the current time and date and sets the LCDs 1st row"
+    time=strftime("%A %Y-%m-%d %H:%M:%S")
+    myLCD.printLine(0, time)
