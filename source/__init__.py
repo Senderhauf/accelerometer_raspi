@@ -38,7 +38,7 @@ def main():
 	myLCD.clearLine(2)
 	myLCD.clearLine(3)
 
-	schedule.every(.1).seconds.do(getTime)
+	schedule.every(1).seconds.do(getTime)
 
 	while True:
 		schedule.run_pending()
