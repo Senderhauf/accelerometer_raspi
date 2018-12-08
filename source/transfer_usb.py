@@ -32,6 +32,7 @@ def transfer_usb():
 	usb_mount_pt = get_mount_points()
 	if len(usb_mount_pt) == 0:
 	    bash_mount_cmd = 'sudo mount /dev/{} /media/usb/'.format(usb.keys()[0])
+	    print(bash_mount_cmd)
 	    subprocess.Popen(bash_mount_cmd.split())
 
 	hashfile = find_file('hash.key', '/media/usb/')
