@@ -50,11 +50,13 @@ def transfer_usb():
 	csv_files = find_all_files('*.csv', home)
 
 	csv_files_lcd = [] 
+	count = 1
 	for file in csv_files:
 		strs = file.split('_')
-		tmp = '1. '+strs[1]+' '+strs[2]
+		tmp = count+'. '+strs[1]+' '+strs[2]
 		#tmp = tmp[:tmp.rfind(':')]
 		csv_files_lcd.append(tmp)
+		count += 1
 
 	#transfer selected file to usb
 	myLCD.clear_all()
