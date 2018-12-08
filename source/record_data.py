@@ -53,9 +53,8 @@ def record_data():
     while button_pressed != 'green' or button_pressed != 'red':
         getTime()
         button_pressed = myLCD.wait_for_button()
-    if button_pressed == 'green':
-        continue
-    elif button_pressed == 'red':
+
+    if button_pressed == 'red':
         myLCD.updateLCD(str2='CANCELING...')
         sleep(1)
         return
