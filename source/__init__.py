@@ -9,9 +9,10 @@ import schedule
 from time import sleep, strftime
 
 def getTime():
-	"Gets the current time and date and returns as a string"
+	"Gets the current time and date and sets the LCDs 1st row"
 	time=strftime("%A %Y-%m-%d %H:%M:%S")
-	return time
+	myLCD.printLine(0, time)
+
 
 def select_option():
 	options = [
@@ -37,7 +38,7 @@ def main():
 	myLCD.clearLine(2)
 	myLCD.clearLine(3)
 
-	schedule.every(.1).seconds.do(myLCD.printLine(0, getTime()))
+	schedule.every(.1).seconds.do(getTime)
 
 	while True:
 		selected_option()
