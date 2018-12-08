@@ -62,19 +62,6 @@ def getTime():
     printLine(0, t.rjust(40))
     return t.rjust(40)
 
-
-def getPercent(now,then):
-	percents = []
-	nbr = len(now)	
-	for i in range(0, nbr):
-		#print float(now[i])
-		#print float(then[i])
-		percent = 100*(float(now[i]) - float(then[i]))/float(then[i])
-		#print percent
-		percents.append(str("%.2f" % percent))
-
-	return percents
-		 
 ### LCD Functions
 def printLine( lineNr, str):
 	#Add spaces for automatic clearing of LCD
@@ -96,34 +83,8 @@ def clearLine(lineNr):
 	printLine(lineNr, "                                            ")
 	return
 
-def firstString():
-	"Creates first string for LCD"
-	str = getTime()
-	return str
-
-def secondString():
-	"Creates second string for LCD"
-	str = ""
-	return str
-
-def thirdString():
-	"Creates third string for LCD"
-	'''
-	my_news = "          "+curNews[news_count]
-	str = "News: "+my_news[scrollCount:scrollCount+34]
-	global scrollCount
-	scrollCount +=1
-	'''
-	str = ""
-	return str
-
-def fourthString():
-	"Creates fourth string for LCD"
-	str = ""
-	return str
-
-def updateLCD(str1=getTime(), str2="", str3="", str4=""):
-	printLine(0,str1)
+def updateLCD(str2="", str3="", str4=""):
+	getTime()
 	printLine(1, str2)
 	printLine(2, str3)
 	printLine(3, str4)
