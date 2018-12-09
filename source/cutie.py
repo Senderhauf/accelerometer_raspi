@@ -539,7 +539,7 @@ def get_number_arrows(
     #lcd = Adafruit_CharLCD.Adafruit_CharLCD()
 
     return_value = -1
-    current_value = 0
+    current_value = min_value
     max_min_prompt = '({},{}): '.format(str(min_value), str(max_value-1))
 
     while return_value < min_value:

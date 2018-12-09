@@ -83,16 +83,23 @@ def set_time():
 
 	myLCD.updateLCD(str2='SET TIME')
 	year = cutie.get_number_arrows('YEAR', 1, 2050, 2018)
+	if year == -1:
+		return
 
 	myLCD.updateLCD(str2='SET TIME')
 	month = cutie.get_number_arrows('MONTH', 1, 13, 1)
-	
+	if year == -1:
+		return 
+
 	invalidDay = True
 	day = 0
 	while invalidDay:
 		myLCD.updateLCD(str2='SET TIME')
 		day = cutie.get_number_arrows('DAY', 1, 32, 1)
 		
+		if day == -1:
+			return 
+
 		if day == 31 and (month in [2,4,6,9,11]):
 			invalidDay = True
 			myLCD.updateLCD(str2='INVALID DAY')
@@ -105,9 +112,13 @@ def set_time():
 	
 	myLCD.updateLCD(str2='SET TIME')
 	hour = cutie.get_number_arrows('HOUR', 1, 13, 1)
-	
+	if hour == -1:
+		return
+
 	myLCD.updateLCD(str2='SET TIME')
 	minute = cutie.get_number_arrows('MINUTE', 1, 60, 1)	
+	if hour == -1:
+		return
 
 	time_tuple = ( year, 
 	                month, 
@@ -119,3 +130,6 @@ def set_time():
 	            )
 
 	_linux_set_time(time_tuple)
+
+	myLCD.clear_all()
+	
