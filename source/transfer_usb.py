@@ -1,5 +1,3 @@
-
-from Adafruit_CharLCD import Adafruit_CharLCD
 import csv
 import cutie
 import os, fnmatch
@@ -63,7 +61,7 @@ def transfer_usb():
 	selected_csv = csv_files[cutie.select(csv_files_lcd, selected_index=0)]
 	print('SELECTED CSV: '+ selected_csv)
 
-	myLCD.updateLCD(str2='COPYING FILE', str3='DO NOT UNPLUG USB')
+	myLCD.updateLCD(str2='SELECTED CSV: '+ selected_csv, str3='COPYING FILE', str4='DO NOT UNPLUG USB')
 	#shutil.copy(selected_csv, '/media/usb'+selected_csv)
 
 	# hacky workaround using bash executed in python 

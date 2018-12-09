@@ -2,6 +2,7 @@
 
 from record_data import record_data
 from transfer_usb import transfer_usb
+import system_functions
 import myLCD
 import cutie
 import os
@@ -19,6 +20,14 @@ def select_option():
 		record_data()
 	elif selected_option == 1:
 		transfer_usb()
+	elif selected_option == 2:
+		options = [
+			'DELETE FILE', 
+			'CLOCK SET']
+		selected_option = cutie.select(options, selected_index = 0)
+
+		if selected_option == 0:
+			system_functions.delete_file()
 
 
 def main():
