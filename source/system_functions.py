@@ -133,7 +133,7 @@ def set_time():
 	                0, # Millisecond
 	            )
 	
-	print('Time Tuple: '+time_tuple)
+	print(time_tuple)
 
 	_linux_set_time(time_tuple)
 
