@@ -23,11 +23,13 @@ def select_option():
 	elif selected_option == 2:
 		options = [
 			'DELETE FILE', 
-			'CLOCK SET']
+			'SET CLOCK']
 		selected_option = cutie.select(options, selected_index = 0)
 
 		if selected_option == 0:
 			system_functions.delete_file()
+		elif selected_option == 1:
+			system_functions.set_time()
 
 
 def main():
