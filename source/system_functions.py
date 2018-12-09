@@ -52,9 +52,9 @@ def find_all_files(pattern, path):
 
 def _set_time_helper(time_tuple):
 	cmd = 'sudo date --set=\'{}-{}-{}'.format(time_tuple[0], time_tuple[1], time_tuple[2])
-    subprocess.check_output(cmd.split())
+	subprocess.check_output(cmd.split())
 
-    cmd = 'sudo date --set=\'{}:{}\''.format(time_tuple[3],time_tuple[4])
+	cmd = 'sudo date --set=\'{}:{}\''.format(time_tuple[3],time_tuple[4])
 	subprocess.check_output(cmd.split())
 
 def set_time():
