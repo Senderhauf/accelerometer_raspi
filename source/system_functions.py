@@ -1,8 +1,7 @@
 from time import sleep
 from os.path import expanduser
 import myLCD
-import subprocess
-
+import subprocess, os, fnmatch
 
 def delete_file():
 	myLCD.clear_all()
@@ -42,3 +41,11 @@ def delete_file():
 	sleep(1)
 
 	return
+
+def find_all_files(pattern, path):
+    result = []
+    for root, dirs, files in os.walk(path):
+        for name in files:
+            if fnmatch.fnmatch(name, pattern):
+                result.append(os.path.join(root, name))
+    return result
