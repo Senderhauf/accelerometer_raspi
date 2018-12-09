@@ -27,15 +27,9 @@ def delete_file():
 	selected_csv = csv_files[cutie.select(csv_files_lcd, selected_index=0)]
 	print('SELECTED CSV: '+ selected_csv)
 
-	myLCD.updateLCD(str2='SELECTED CSV: ', str3=selected_csv.split('Device')[1], str4='DELETING FILE')
+	myLCD.updateLCD(str2='SELECTED CSV: ', str3=selected_csv.split('Device')[1][2:], str4='DELETING FILE')
 
-	indexof_space = selected_csv.find(' ')
-	indexof_device = selected_csv.find('Device')
-	selected_csv = selected_csv[:indexof_device]+'*'+selected_csv[indexof_space+1:]
-	cmd = 'sudo rm {}'.format(selected_csv)
-	print(cmd)
-
-	subprocess.check_output(cmd.split())
+	os.remove(selected_csv)
 	sleep(1)
 
 	myLCD.updateLCD(str4='FILE DELETED')
