@@ -19,9 +19,9 @@ def transfer_usb():
 		myLCD.printLine(1, 'NO USB CONNECTED')
 		print('NO USB CONNECTED')
 		sleep(1)
-		options = ['CONNECT USB', 'BACK']
+		options = ['RETRY USB CONNECTION']
 		selected_option = cutie.select(options, selected_index=0)
-		if selected_option == 1:
+		if selected_option == -1:
 			return	# back to main menu
 		usb = get_usb_devices()
 
@@ -59,6 +59,8 @@ def transfer_usb():
 	#transfer selected file to usb
 	myLCD.clear_all()
 	selected_csv = csv_files[cutie.select(csv_files_lcd, selected_index=0)]
+	if selected_csv == -1:
+		return
 	print('SELECTED CSV: '+ selected_csv)
 
 	myLCD.updateLCD(str2='SELECTED CSV: '+ selected_csv, str3='COPYING FILE', str4='DO NOT UNPLUG USB')

@@ -194,6 +194,7 @@ def select(
                 if new_index not in caption_indices:
                     selected_index = new_index
                     break
+        
         #elif keypress == readchar.key.DOWN or button_down_pressed:
         elif button_pressed == 'down':
             new_index = selected_index
@@ -202,6 +203,10 @@ def select(
                 if new_index not in caption_indices:
                     selected_index = new_index
                     break
+        
+        elif button_pressed == 'red':
+            return -1
+
         else:
             break
     return selected_index

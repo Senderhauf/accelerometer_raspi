@@ -43,9 +43,9 @@ def record_data():
         myLCD.updateLCD(str2 = 'NO SENSOR FOUND')
         print('NO SENSOR FOUND')
         sleep(1)
-        options = ['CONNECT SENSOR', 'BACK']
+        options = ['RETRY SENSOR PAIRING']
         selected_option = cutie.select(options, selected_index=0)
-        if selected_option == 1:
+        if selected_option == -1:
             return # back to main menu
         sensor_connected = os.path.exists('/dev/ttyUSB0')
 

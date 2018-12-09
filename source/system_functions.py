@@ -30,6 +30,8 @@ def delete_file():
 	#transfer selected file to usb
 	myLCD.clear_all()
 	selected_csv = csv_files[cutie.select(csv_files_lcd, selected_index=0)]
+	if selected_csv == -1:
+		return
 	print('SELECTED CSV: '+ selected_csv)
 
 	myLCD.updateLCD(str2='SELECTED CSV: ', str3=selected_csv.split('Device')[1][2:], str4='DELETING FILE')
@@ -128,8 +130,9 @@ def set_time():
 	                0, 
 	                0, # Millisecond
 	            )
+	
+	print('Time Tuple: '+time_tuple)
 
 	_linux_set_time(time_tuple)
 
 	myLCD.clear_all()
-	
