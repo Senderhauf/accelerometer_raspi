@@ -2,11 +2,7 @@ from time import sleep
 from os.path import expanduser
 import myLCD, cutie
 import subprocess, os, fnmatch
-import sys
-import datetime
-import ctypes
-import ctypes.util
-import time
+
 
 def delete_file():
 	myLCD.clear_all()
@@ -54,32 +50,12 @@ def find_all_files(pattern, path):
                 result.append(os.path.join(root, name))
     return result
 
-def _linux_set_time(time_tuple):
+def _set_time_helper(time_tuple):
+	cmd = 'sudo date --set=\'{}-{}-{}'.format(time_tuple[0], time_tuple[1], time_tuple[2])
+    subprocess.check_output(cmd.split())
 
-    # /usr/include/linux/time.h:
-    #
-    # define CLOCK_REALTIME                     0
-    CLOCK_REALTIME = 0
-
-    # /usr/include/time.h
-    #
-    # struct timespec
-    #  {
-    #    __time_t tv_sec;            /* Seconds.  */
-    #    long int tv_nsec;           /* Nanoseconds.  */
-    #  };
-    class timespec(ctypes.Structure):
-        _fields_ = [("tv_sec", ctypes.c_long),
-                    ("tv_nsec", ctypes.c_long)]
-
-    librt = ctypes.CDLL(ctypes.util.find_library("rt"))
-
-    ts = timespec()
-    ts.tv_sec = int( time.mktime( datetime.datetime( *time_tuple[:6]).timetuple() ) )
-    ts.tv_nsec = time_tuple[6] * 1000000 # Millisecond to nanosecond
-
-    # http://linux.die.net/man/3/clock_settime
-    librt.clock_settime(CLOCK_REALTIME, ctypes.byref(ts))
+    cmd = 'sudo date --set=\'{}:{}\''.format(time_tuple[3],time_tuple[4])
+    subprocess.check_output(cmd.split())
 
 def set_time():
 	
@@ -129,12 +105,8 @@ def set_time():
 	                day, 
 	                hour, 
 	                minute, 
-	                0, 
-	                0, # Millisecond
 	            )
 	
-	print(time_tuple)
-
-	_linux_set_time(time_tuple)
+	_set_time_helper(time_tuple)
 
 	myLCD.clear_all()
