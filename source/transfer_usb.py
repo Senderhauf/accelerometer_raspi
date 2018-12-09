@@ -58,6 +58,9 @@ def transfer_usb():
 		csv_files_lcd.append(tmp)
 		count += 1
 
+		if (count == 14):
+			print(tmp)
+
 	#transfer selected file to usb
 	myLCD.clear_all()
 	selected_csv = csv_files[cutie.select(csv_files_lcd, selected_index=0)]
