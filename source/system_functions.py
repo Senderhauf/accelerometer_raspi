@@ -30,7 +30,7 @@ def delete_file():
 	myLCD.updateLCD(str2='SELECTED CSV: ', str3=selected_csv.split('Device')[1], str4='DELETING FILE')
 
 	indexof_space = selected_csv.find(' ')
-	indexof_device = selected_csv.find('device')
+	indexof_device = selected_csv.find('Device')
 	selected_csv = selected_csv[:indexof_device]+selected_csv[indexof_space+1:]
 	cmd = 'sudo rm {}'.format(selected_csv)
 	print(cmd)
