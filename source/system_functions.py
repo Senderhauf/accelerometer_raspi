@@ -93,11 +93,11 @@ def set_time():
 		myLCD.updateLCD(str2='SET TIME')
 		day = cutie.get_number_arrows('DAY', 1, 32, 1)
 		
-		if day == 31 and (month in [2,4,6,9,11])
+		if day == 31 and (month in [2,4,6,9,11]):
 			invalidDay = True
 			myLCD.updateLCD(str2='INVALID DAY')
 
-		elif day == 30 and (month in [2])
+		elif day == 30 and (month in [2]):
 			myLCD.updateLCD(str2='INVALID DAY')
 			invalidDay = True
 		else:
