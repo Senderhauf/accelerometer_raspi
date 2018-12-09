@@ -1,6 +1,6 @@
 from time import sleep
 from os.path import expanduser
-import myLCD
+import myLCD, cutie
 import subprocess, os, fnmatch
 
 def delete_file():
