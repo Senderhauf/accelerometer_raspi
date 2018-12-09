@@ -29,9 +29,11 @@ def delete_file():
 
 	#transfer selected file to usb
 	myLCD.clear_all()
-	selected_csv = csv_files[cutie.select(csv_files_lcd, selected_index=0)]
-	if selected_csv == -1:
+	selected_index = cutie.select(csv_files_lcd, selected_index=0)
+	if selected_index == -1:
 		return
+	selected_csv = csv_files[selected_index]
+
 	print('SELECTED CSV: '+ selected_csv)
 
 	myLCD.updateLCD(str2='SELECTED CSV: ', str3=selected_csv.split('Device')[1][2:], str4='DELETING FILE')
