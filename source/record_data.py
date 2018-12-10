@@ -84,6 +84,12 @@ def record_data():
         button_pressed = cutie.wait_for_button()
         if (time() >= endTime) or button_pressed == 'red':
             break
+        elif button_pressed == 'red':
+            myLCD.updateLCD(str2='CANCELING...')
+            os.killpg(os.getpgid(pro.pid), signal.SIGTERM)
+            os.chdir('/home/pi/accelerometer_raspi/source')
+            sleep(1)
+            return
 
     os.killpg(os.getpgid(pro.pid), signal.SIGTERM)
 
