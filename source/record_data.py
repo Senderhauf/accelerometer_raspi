@@ -51,10 +51,12 @@ def record_data():
 
     myLCD.updateLCD(str2='ENTER TO START')
     button_pressed = None
-    while button_pressed != 'green' or button_pressed != 'red':
+    while True:
         myLCD.getTime()
         button_pressed = cutie.wait_for_button()
         print(button_pressed)
+        if button_pressed == 'red' or button_pressed == 'green':
+            break
 
     if button_pressed == 'red':
         myLCD.updateLCD(str2='CANCELING...')
