@@ -97,5 +97,6 @@ def record_data():
 
     #lcd.message('\nDONE')
     myLCD.updateLCD(str2='DONE')
+    sleep(1)
     print('DONE')
 
