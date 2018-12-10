@@ -52,7 +52,7 @@ def record_data():
     myLCD.updateLCD(str2='ENTER TO START')
     button_pressed = None
     while button_pressed != 'green' or button_pressed != 'red':
-        getTime()
+        myLCD.getTime()
         button_pressed = myLCD.wait_for_button()
 
     if button_pressed == 'red':

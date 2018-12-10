@@ -59,11 +59,18 @@ def main():
 	while True:
 		select_option()
 		cutie.getTime()
-		if cancel_count >= 5:
+		if cancel_count >= 3:
 			myLCD.clear_all()
-			myLCD.updateLCD(str2='EXITING PROGRAM', str3='GOODBYE')
-			sleep(2)
-			exit()
+			options = ['EXIT', 'SHUTDOWN']
+			selected_option = cutie.select(options, selected_index = 0)
+			if selected_option = 0:
+				myLCD.updateLCD(str2='EXITING PROGRAM', str3='GOODBYE')
+				sleep(2)
+				exit()
+			elif selected_option = 1:
+				myLCD.updateLCD(str2='EXITING PROGRAM', str3='GOODBYE')
+				sleep(2)
+				os.system('sudo shutdown now -h')
 
 if __name__ == '__main__':
 	main()
