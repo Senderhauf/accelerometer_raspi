@@ -13,6 +13,8 @@ from time import sleep, strftime
 cancel_count = 0
 
 def select_option():
+	global cancel_count
+	
 	options = [
 		'RECORD DATA',
 		'TRANSFER DATA', 
