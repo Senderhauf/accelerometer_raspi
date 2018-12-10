@@ -82,8 +82,8 @@ def record_data():
 
     while True:
         myLCD.getTime()
-        button_pressed = myLCD.wait_for_button()
-        if(time() >= endTime):
+        button_pressed = cutie.wait_for_button()
+        if (time() >= endTime) or button_pressed == 'red':
             break
 
     os.killpg(os.getpgid(pro.pid), signal.SIGTERM)
