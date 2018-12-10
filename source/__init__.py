@@ -14,7 +14,7 @@ cancel_count = 0
 
 def select_option():
 	global cancel_count
-	
+
 	options = [
 		'RECORD DATA',
 		'TRANSFER DATA', 
@@ -42,7 +42,9 @@ def select_option():
 
 
 def main():
-# Remove old shutdown file
+	global cancel_count
+
+	# Remove old shutdown file
 	try:
 		os.remove("/home/pi/accelerometer_raspi/source/shutdown")
 	except (OSError):
@@ -57,24 +59,11 @@ def main():
 	while True:
 		select_option()
 		cutie.getTime()
+		if cancel_count >= 5:
+			myLCD.clear_all()
+			myLCD.updateLCD(str2='EXITING PROGRAM', str3='GOODBYE')
+			sleep(2)
+			exit()
 
 if __name__ == '__main__':
 	main()
-
-
-'''
-### MAIN FUNCTION
-while True:
-	schedule.run_pending()
-	time.sleep(0.01)
-	#Check if shutting down
-	try:
-		if os.path.isfile("/home/pi/RPi-LCD/shutdown"):
-			print "Shutting down"
-			shutdown_message()
-	except (OSError):
-		pass
-	#Update LCD every 100 ms
-	updateLCD()	
-'''
-
