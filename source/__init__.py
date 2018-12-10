@@ -63,11 +63,11 @@ def main():
 			myLCD.clear_all()
 			options = ['EXIT', 'SHUTDOWN']
 			selected_option = cutie.select(options, selected_index = 0)
-			if selected_option = 0:
+			if selected_option == 0:
 				myLCD.updateLCD(str2='EXITING PROGRAM', str3='GOODBYE')
 				sleep(2)
 				exit()
-			elif selected_option = 1:
+			elif selected_option == 1:
 				myLCD.updateLCD(str2='EXITING PROGRAM', str3='GOODBYE')
 				sleep(2)
 				os.system('sudo shutdown now -h')
