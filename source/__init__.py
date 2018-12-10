@@ -9,6 +9,9 @@ import os
 import schedule
 from time import sleep, strftime
 
+#press cancel button 5 times in a row to exit the program
+cancel_count = 0
+
 def select_option():
 	options = [
 		'RECORD DATA',
@@ -16,10 +19,14 @@ def select_option():
 		'SYSTEM FUNCTIONS']
 	selected_option = cutie.select(options, selected_index=0)
 
-	if selected_option == 0:
+	if selected_option == -1:
+		cancel_count += 1
+	elif selected_option == 0:
 		record_data()
+		cancel_count = 0
 	elif selected_option == 1:
 		transfer_usb()
+		cancel_count = 0
 	elif selected_option == 2:
 		options = [
 			'DELETE FILE', 
