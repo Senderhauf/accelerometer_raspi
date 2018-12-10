@@ -67,8 +67,7 @@ def record_data():
     curTime = time()
     finish = datetime.datetime.fromtimestamp(endTime)
 
-    myLCD.updateLCD(str2='RECORDING...')
-    myLCD.updateLCD(str3='FINISH: {:02d}:{:02d}'.format(finish.hour, finish.minute))
+    myLCD.updateLCD(str2='RECORDING...', str3='FINISH: {:02d}:{:02d}'.format(finish.hour, finish.minute))
     print('FINISH: {:02d}:{:02d}\nRECORDING...'.format(finish.hour, finish.minute))
  
     # excute following script: java -jar ~/BannerQM42TestApplication.jar -config 1000RPM-5Hz_1Device.JSON -logfile test.csv -port /dev/ttyUSB0
